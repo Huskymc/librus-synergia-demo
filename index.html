@@ -3,11 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIBRUS Synergia</title>
-<meta http-equiv="refresh" content="0; url=./app.html">
-<script>location.replace('./app.html');</script>
+<title>LIBRUS Synergia – System szkolny</title>
 </head>
-<body>
-<p><a href="./app.html">Otwórz panel LIBRUS</a></p>
+<body style="margin:0;font-family:system-ui;background:#4a1c7a;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh">
+<div id="boot">Ładowanie panelu…</div>
+<script src="c0.js"></script>
+<script src="c1.js"></script>
+<script src="c2.js"></script>
+<script src="c3.js"></script>
+<script>
+try {
+  var b64 = (window.__LIBRUS_CHUNKS||[]).join('');
+  var bin = atob(b64);
+  var bytes = new Uint8Array(bin.length);
+  for (var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  var html = new TextDecoder('utf-8').decode(bytes);
+  document.open();
+  document.write(html);
+  document.close();
+} catch(e) {
+  document.getElementById('boot').textContent = 'Błąd ładowania: '+e.message;
+}
+</script>
 </body>
 </html>
