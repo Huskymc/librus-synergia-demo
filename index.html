@@ -3,27 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIBRUS Synergia – System szkolny</title>
+<title>LIBRUS Synergia</title>
+<style>
+body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#4a1c7a,#8e44ad);min-height:100vh;margin:0;display:flex;align-items:center;justify-content:center;color:#fff}
+.box{background:#fff;color:#333;padding:32px;border-radius:12px;max-width:420px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+h1{color:#5c2d91;font-size:20px;margin:0 0 12px}
+p{font-size:14px;line-height:1.5;margin:0 0 10px}
+a{color:#5c2d91;font-weight:600}
+code{background:#f3eef8;padding:2px 6px;border-radius:4px;font-size:13px}
+</style>
 </head>
-<body style="margin:0;font-family:system-ui;background:#4a1c7a;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh">
-<div id="boot">Ładowanie panelu…</div>
-<script src="c0.js"></script>
-<script src="c1.js"></script>
-<script src="c2.js"></script>
-<script src="c3.js"></script>
-<script>
-try {
-  var b64 = (window.__LIBRUS_CHUNKS||[]).join('');
-  var bin = atob(b64);
-  var bytes = new Uint8Array(bin.length);
-  for (var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
-  var html = new TextDecoder('utf-8').decode(bytes);
-  document.open();
-  document.write(html);
-  document.close();
-} catch(e) {
-  document.getElementById('boot').textContent = 'Błąd ładowania: '+e.message;
-}
-</script>
+<body>
+<div class="box">
+<h1>LIBRUS Synergia – deploy</h1>
+<p>Wrzuć pełny plik aplikacji jako <code>index.html</code> do tego repozytorium (Upload files na GitHubie).</p>
+<p>Instrukcja: plik <a href="DEPLOY.md">DEPLOY.md</a></p>
+<p>Potem połącz repo z <a href="https://vercel.com/new" target="_blank" rel="noopener">Vercel</a>.</p>
+</div>
 </body>
 </html>
