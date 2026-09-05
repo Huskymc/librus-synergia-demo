@@ -3,22 +3,1296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIBRUS Synergia</title>
-<style>
-body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#4a1c7a,#8e44ad);min-height:100vh;margin:0;display:flex;align-items:center;justify-content:center;color:#fff}
-.box{background:#fff;color:#333;padding:32px;border-radius:12px;max-width:420px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
-h1{color:#5c2d91;font-size:20px;margin:0 0 12px}
-p{font-size:14px;line-height:1.5;margin:0 0 10px}
-a{color:#5c2d91;font-weight:600}
-code{background:#f3eef8;padding:2px 6px;border-radius:4px;font-size:13px}
-</style>
+<title>LIBRUS Synergia – System szkolny</title>
+<style>*{margin:0;padding:0;box-sizing:border-box} body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;color:#333;font-size:14px;min-height:100vh} #login-page{display:flex;flex-direction:column;min-height:100vh;background:linear-gradient(135deg,#4a1c7a 0%,#6b2d9b 45%,#8e44ad 100%)} .login-header{padding:18px 28px;display:flex;align-items:center;gap:12px} .login-header svg{width:38px;height:38px} .login-header .logo-text{color:#fff;font-size:22px;font-weight:700} .login-wrapper{flex:1;display:flex;align-items:center;justify-content:center;padding:20px} .login-box{background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.28);width:100%;max-width:440px;overflow:hidden} .login-tabs{display:flex;background:#f5f0fa} .login-tab{flex:1;padding:14px 8px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;color:#666;border-bottom:3px solid transparent} .login-tab:hover{background:#ebe4f5} .login-tab.active{color:#5c2d91;border-bottom-color:#5c2d91;background:#fff} .login-box-body{padding:26px 28px} .form-group{margin-bottom:16px} .form-group label{display:block;font-size:13px;font-weight:600;color:#444;margin-bottom:5px} .form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 13px;border:1px solid #ccc;border-radius:6px;font-size:14px;font-family:inherit} .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#5c2d91;box-shadow:0 0 0 3px rgba(92,45,145,.12)} .btn-login{width:100%;padding:12px;background:#5c2d91;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;margin-top:6px} .btn-login:hover{background:#4a2475} .login-hint{text-align:center;margin-top:16px;font-size:12px;color:#888;line-height:1.5} .login-page-footer{text-align:center;padding:14px;color:rgba(255,255,255,.65);font-size:12px} #app{display:none;min-height:100vh} .topbar{background:linear-gradient(90deg,#5c2d91 0%,#7b3fa8 100%);height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:#fff;box-shadow:0 2px 5px rgba(0,0,0,.18);position:sticky;top:0;z-index:100} .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px} .logo svg{width:30px;height:30px} .top-right{display:flex;align-items:center;gap:14px;font-size:13px} .role-badge{background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600} .avatar{width:32px;height:32px;background:#9b59b6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px} .btn-logout{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:5px 12px;border-radius:4px;cursor:pointer;font-size:12px} .btn-logout:hover{background:rgba(255,255,255,.28)} .container{display:flex;min-height:calc(100vh - 50px)} .sidebar{width:230px;background:#2c2c2c;color:#ddd;padding-top:10px;flex-shrink:0} .sidebar-item{display:flex;align-items:center;gap:11px;padding:11px 16px;cursor:pointer;border-left:3px solid transparent;font-size:13.5px} .sidebar-item:hover{background:#3a3a3a;color:#fff} .sidebar-item.active{background:#5c2d91;color:#fff;border-left-color:#c39bd3} .sidebar-item .icon{width:18px;text-align:center} .sidebar-section{margin-top:16px;padding:0 16px 5px;font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:#777} .main{flex:1;padding:18px 22px;overflow-y:auto} .page-title{font-size:19px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap} .badge{background:#5c2d91;color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px} .card{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:18px;overflow:hidden} .card-header{background:#f8f6fb;padding:11px 15px;border-bottom:1px solid #e8e0f0;font-weight:600;color:#5c2d91;display:flex;justify-content:space-between;align-items:center} .card-body{padding:15px} table{width:100%;border-collapse:collapse;font-size:13px} th{background:#f0ebf5;color:#5c2d91;font-weight:600;text-align:left;padding:9px 11px;border-bottom:2px solid #d4c4e0} td{padding:8px 11px;border-bottom:1px solid #eee} tr:hover td{background:#faf8fc} .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:none;border-radius:5px;font-size:13px;font-weight:600;cursor:pointer} .btn-primary{background:#5c2d91;color:#fff}.btn-primary:hover{background:#4a2475} .btn-success{background:#28a745;color:#fff}.btn-success:hover{background:#218838} .btn-danger{background:#dc3545;color:#fff}.btn-danger:hover{background:#c82333} .btn-outline{background:#fff;border:1px solid #5c2d91;color:#5c2d91}.btn-outline:hover{background:#f5f0fa} .btn-sm{padding:5px 10px;font-size:12px} .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:18px} .stat-card{background:#fff;border-radius:8px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);text-align:center} .stat-value{font-size:24px;font-weight:700;color:#5c2d91} .stat-label{font-size:12px;color:#777;margin-top:3px} .grade{display:inline-block;min-width:26px;text-align:center;padding:2px 5px;border-radius:4px;font-weight:600;font-size:12px} .g6{background:#b3e5fc;color:#01579b} .g5{background:#c8e6c9;color:#1b5e20} .g4{background:#bbdefb;color:#0d47a1} .g3{background:#fff9c4;color:#f57f17} .g2{background:#ffccbc;color:#bf360c} .g1{background:#ffcdd2;color:#b71c1c} .grade{display:inline-block;min-width:28px;text-align:center;padding:3px 7px;border-radius:4px;font-weight:700;font-size:13px} .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px} .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;padding:20px} .modal-overlay.show{display:flex} .modal{background:#fff;border-radius:10px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 15px 50px rgba(0,0,0,.3)} .modal-header{padding:16px 20px;background:#5c2d91;color:#fff;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center} .modal-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1} .modal-body{padding:20px} .modal-footer{padding:12px 20px;border-top:1px solid #eee;display:flex;justify-content:flex-end;gap:10px} .toast{position:fixed;bottom:24px;right:24px;background:#28a745;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:500;box-shadow:0 4px 15px rgba(0,0,0,.2);z-index:300;opacity:0;transform:translateY(20px);transition:all .3s} .toast.show{opacity:1;transform:translateY(0)}.toast.error{background:#dc3545} .timetable{display:grid;grid-template-columns:70px repeat(5,1fr);gap:0;border:1px solid #c5b8d4;border-radius:8px;overflow:hidden;font-size:12px;background:#fff} .tt-header{background:linear-gradient(180deg,#6b3aa0 0%,#5c2d91 100%);color:#fff;font-weight:600;padding:10px 4px;text-align:center;font-size:12px;border-right:1px solid rgba(255,255,255,.15)} .tt-header:last-child{border-right:none} .tt-time{background:#f3eef8;font-weight:600;color:#5c2d91;padding:8px 6px;text-align:center;border-top:1px solid #e0d6ec;border-right:1px solid #e0d6ec;font-size:11px;line-height:1.35} .tt-time small{display:block;font-weight:500;color:#888;font-size:10px} .tt-lesson{padding:7px 8px;text-align:left;border-top:1px solid #e8e8e8;border-right:1px solid #eee;min-height:52px;cursor:default} .tt-lesson .subject{font-weight:700;font-size:12px;margin-bottom:2px} .tt-lesson .room{font-size:10px;color:#666} .tt-lesson .teacher{font-size:10px;color:#888} .tt-empty{background:#fafafa;border-top:1px solid #eee;border-right:1px solid #f0f0f0} .tt-mat{background:#e3f2fd !important;border-left:4px solid #1976d2 !important;color:#0d47a1} .tt-pol{background:#fce4ec !important;border-left:4px solid #c2185b !important;color:#880e4f} .tt-ang{background:#e8f5e9 !important;border-left:4px solid #388e3c !important;color:#1b5e20} .tt-his{background:#fff3e0 !important;border-left:4px solid #f57c00 !important;color:#e65100} .tt-bio{background:#e0f2f1 !important;border-left:4px solid #00796b !important;color:#004d40} .tt-che{background:#f3e5f5 !important;border-left:4px solid #7b1fa2 !important;color:#4a148c} .tt-fiz{background:#e8eaf6 !important;border-left:4px solid #303f9f !important;color:#1a237e} .tt-wf{background:#fff8e1 !important;border-left:4px solid #ffa000 !important;color:#ff6f00} .tt-geo{background:#efebe9 !important;border-left:4px solid #5d4037 !important;color:#3e2723} .tt-other{background:#f5f5f5 !important;border-left:4px solid #757575 !important;color:#424242} .tt-lesson .subject{color:inherit} .tt-lesson .teacher,.tt-lesson .room{opacity:.85} .tt-other{background:#f5f5f5;border-left:3px solid #9e9e9e} .term-item{display:flex;gap:14px;padding:12px 14px;border-bottom:1px solid #eee;align-items:flex-start} .term-item:hover{background:#faf8fc} .term-date{min-width:70px;text-align:center;background:#f3eef8;border-radius:8px;padding:8px 6px;flex-shrink:0} .term-date .d{font-size:20px;font-weight:700;color:#5c2d91;line-height:1} .term-date .m{font-size:11px;color:#888;text-transform:uppercase} .term-body{flex:1} .term-title{font-weight:600;margin-bottom:3px} .term-meta{font-size:12px;color:#777} .term-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;margin-top:4px} .tag-sprawdzian{background:#ffebee;color:#c62828} .tag-kartkowka{background:#fff3e0;color:#ef6c00} .tag-zadanie{background:#e3f2fd;color:#1565c0} .tag-wydarzenie{background:#f3e5f5;color:#7b1fa2} .tag-zebranie{background:#e8f5e9;color:#2e7d32} .plan-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:11px} .plan-legend span{display:inline-flex;align-items:center;gap:4px} .plan-legend i{width:12px;height:12px;border-radius:3px;display:inline-block} .message-item{padding:11px 0;border-bottom:1px solid #eee;display:flex;gap:12px} .msg-avatar{width:36px;height:36px;background:#5c2d91;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:12px} .msg-sender{font-weight:600;margin-bottom:2px}.msg-preview{color:#666;font-size:13px} .msg-date{color:#999;font-size:12px;white-space:nowrap;margin-left:auto} .empty-state{text-align:center;padding:30px;color:#999} @media(max-width:900px){.sidebar{width:56px}.sidebar-item span:not(.icon){display:none}.form-row{grid-template-columns:1fr}}</style>
 </head>
 <body>
-<div class="box">
-<h1>LIBRUS Synergia – deploy</h1>
-<p>Wrzuć pełny plik aplikacji jako <code>index.html</code> do tego repozytorium (Upload files na GitHubie).</p>
-<p>Instrukcja: plik <a href="DEPLOY.md">DEPLOY.md</a></p>
-<p>Potem połącz repo z <a href="https://vercel.com/new" target="_blank" rel="noopener">Vercel</a>.</p>
+<div id="login-page">
+  <div class="login-header">
+    <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="white"/><path d="M10 8h8.5c4.5 0 7.5 2.8 7.5 7.2 0 3.2-1.6 5.4-4.2 6.5L28 32h-6.2l-5.5-9.5H16V32h-6V8zm6 9.8h2.2c2 0 3.2-1.1 3.2-2.9s-1.2-2.9-3.2-2.9H16v5.8z" fill="#5c2d91"/></svg>
+    <div class="logo-text">LIBRUS Synergia</div>
+  </div>
+  <div class="login-wrapper">
+    <div class="login-box">
+      <div class="login-box-body">
+        <div style="text-align:center;margin-bottom:18px;font-size:18px;font-weight:600;color:#5c2d91">Logowanie</div>
+        <div id="login-error" style="display:none;background:#f8d7da;color:#721c24;padding:10px 12px;border-radius:6px;margin-bottom:14px;font-size:13px;"></div>
+        <div class="form-group"><label>Login</label><input type="text" id="login" placeholder="Login" autocomplete="username"></div>
+        <div class="form-group"><label>Hasło</label><input type="password" id="password" placeholder="Hasło" autocomplete="current-password"></div>
+        <button type="button" class="btn-login" id="btn-login" onclick="doLogin()">Zaloguj</button>
+        <form id="login-form" style="display:none"></form>
+      </div>
+    </div>
+  </div>
+  <div class="login-page-footer"></div>
 </div>
+
+<div id="app">
+  <div class="topbar">
+    <div class="logo">
+      <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="white"/><path d="M10 8h8.5c4.5 0 7.5 2.8 7.5 7.2 0 3.2-1.6 5.4-4.2 6.5L28 32h-6.2l-5.5-9.5H16V32h-6V8zm6 9.8h2.2c2 0 3.2-1.1 3.2-2.9s-1.2-2.9-3.2-2.9H16v5.8z" fill="#5c2d91"/></svg>
+      <span>LIBRUS Synergia</span>
+    </div>
+    <div class="top-right">
+      <span class="role-badge" id="role-badge">Uczeń</span>
+      <div class="avatar" id="user-avatar">JK</div>
+      <span id="user-name">Jan Kowalski</span>
+      <button class="btn-logout" onclick="logout()">Wyloguj</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="sidebar" id="sidebar"></div>
+    <div class="main" id="main-content"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header"><span id="modal-title">Tytuł</span><button class="modal-close" onclick="closeModal()">&times;</button></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+let currentRole='uczen';
+let currentUser={name:'Jan Kowalski',class:'3A',initials:'JK'};
+let teachers=[
+  {id:1,name:'mgr Anna Nowak',subject:'Matematyka',login:'a.nowak',email:'a.nowak@sp15.edu.pl'},
+  {id:2,name:'mgr Barbara Wiśniewska',subject:'Język polski',login:'b.wisniewska',email:'b.wisniewska@sp15.edu.pl'},
+  {id:3,name:'mgr Cezary Kowalski',subject:'Historia',login:'c.kowalski',email:'c.kowalski@sp15.edu.pl'},
+  {id:4,name:'mgr Dorota Lewandowska',subject:'Język angielski',login:'d.lewandowska',email:'d.lewandowska@sp15.edu.pl'},
+  {id:5,name:'mgr Ewa Kamińska',subject:'Biologia',login:'e.kaminska',email:'e.kaminska@sp15.edu.pl'},
+  {id:6,name:'mgr Piotr Zieliński',subject:'Chemia / Fizyka',login:'p.zielinski',email:'p.zielinski@sp15.edu.pl'},
+  {id:7,name:'mgr Tomasz Wójcik',subject:'Wychowanie fizyczne',login:'t.wojcik',email:'t.wojcik@sp15.edu.pl'},
+  {id:8,name:'mgr Katarzyna Szymańska',subject:'Geografia',login:'k.szymanska',email:'k.szymanska@sp15.edu.pl'}
+];
+let announcements=[
+  {id:1,title:'Zmiana planu lekcji – 10 września',date:'03.09.2026',text:'W związku z wyjazdem klasy 2B na konkurs matematyczny, lekcje 4. i 5. w środę 10.09 zostają odwołane dla klasy 3A. Uczniowie klas 3A kończą zajęcia po 3. lekcji.'},
+  {id:2,title:'Zebranie z rodzicami – 12 września',date:'02.09.2026',text:'Zapraszamy rodziców na zebranie organizacyjne w piątek 12.09.2026 o godz. 17:00 w sali 1 (aula). Obecność obowiązkowa.'},
+  {id:3,title:'Rekrutacja do koła teatralnego',date:'01.09.2026',text:'Zapraszamy wszystkich chętnych uczniów klas 4–8 na pierwsze spotkanie koła teatralnego w piątek o 14:00 w sali 7. Prowadząca: mgr B. Wiśniewska.'},
+  {id:4,title:'Strój galowy na apel',date:'01.09.2026',text:'Na apel z okazji rozpoczęcia roku szkolnego (12.09) obowiązuje strój galowy. Prosimy o przygotowanie białej bluzki/koszuli oraz ciemnych spodni/spódnicy.'}
+];
+let substitutions=[
+  {id:1,date:'05.09.2026',lesson:'3',class:'3A',subject:'Matematyka',original:'mgr A. Nowak',substitute:'mgr C. Kowalski',room:'12'},
+  {id:2,date:'08.09.2026',lesson:'2',class:'2B',subject:'Język angielski',original:'mgr D. Lewandowska',substitute:'mgr B. Wiśniewska',room:'3'},
+  {id:3,date:'09.09.2026',lesson:'5',class:'1C',subject:'WF',original:'mgr T. Wójcik',substitute:'mgr P. Zieliński',room:'sala gimn.'}
+];
+let directorNotes=[
+  {id:1,date:'02.09.2026',text:'Przypominam wszystkim nauczycielom i uczniom o obowiązku noszenia stroju galowego na apel 12 września. Kontrola przy wejściu.'},
+  {id:2,date:'28.08.2026',text:'W związku z remontem sali 14 lekcje chemii do 15.09 odbywają się w sali 11. Proszę o uwzględnienie w planach.'}
+];
+let messages=[
+  {id:1,from:'mgr Anna Nowak · Matematyka',initials:'AN',text:'Przypomnienie: sprawdzian z geometrii (rozdział 2 – figury płaskie) we wtorek 9.09.2026 na 2. lekcji. Proszę powtórzyć wzory na pole i obwód: kwadrat, prostokąt, trójkąt, koło. Zadania z podręcznika str. 48–52.',date:'dziś, 14:22'},
+  {id:2,from:'mgr Barbara Wiśniewska · Język polski',initials:'BW',text:'Proszę oddać wypracowania na temat „Moje wakacje” (minimum 200 słów, pismo czytelne lub wydruk) do piątku 6.09.2026. Prace nieoddane w terminie będą ocenione na ocenę niedostateczną. Można wysłać skan na Librus.',date:'wczoraj, 16:05'},
+  {id:3,from:'Sekretariat szkoły',initials:'SZ',text:'Informujemy o zebraniu z rodzicami klas 1–3 w piątek 12.09.2026 o godz. 17:00 w auli (sala 1). Temat: organizacja roku szkolnego, ubezpieczenie, zajęcia dodatkowe. Lista obecności będzie prowadzona.',date:'2 dni temu'},
+  {id:4,from:'mgr Dorota Lewandowska · Język angielski',initials:'DL',text:'Kartkówka ze słówek Unit 1 (Family & Friends) w poniedziałek 8.09.2026 na 3. lekcji. Lista 25 słówek znajduje się w zadaniu domowym z 2.09 oraz w podręczniku na str. 14–15.',date:'3 dni temu'},
+  {id:5,from:'mgr Cezary Kowalski · Historia',initials:'CK',text:'Gratuluję Janowi Kowalskiemu bardzo dobrej, pełnej odpowiedzi na lekcji o początkach państwa polskiego i dynastii Piastów. Ocena 5 wpisana. Tak trzymaj!',date:'5 dni temu'},
+  {id:6,from:'mgr Ewa Kamińska · Biologia',initials:'EK',text:'Na następną lekcję (10.09) proszę o przyniesienie zeszytu ćwiczeń oraz powtórzenie działu „Komórka – budowa i funkcje”. Możliwa krótka kartkówka.',date:'wczoraj, 11:30'},
+  {id:7,from:'mgr Janusz Kowalczyk · Dyrektor',initials:'JK',text:'Szanowni Państwo, przypominam o obowiązku stroju galowego na apel 12 września. Proszę o przekazanie informacji dzieciom. Dziękuję za współpracę.',date:'dziś, 09:15'}
+];
+let subjectsList=[
+  {id:1,name:'Matematyka',short:'Mat',color:'mat'},
+  {id:2,name:'Język polski',short:'Pol',color:'pol'},
+  {id:3,name:'Język angielski',short:'Ang',color:'ang'},
+  {id:4,name:'Historia',short:'His',color:'his'},
+  {id:5,name:'Biologia',short:'Bio',color:'bio'},
+  {id:6,name:'Chemia',short:'Che',color:'che'},
+  {id:7,name:'Fizyka',short:'Fiz',color:'fiz'},
+  {id:8,name:'Wychowanie fizyczne',short:'WF',color:'wf'},
+  {id:9,name:'Geografia',short:'Geo',color:'geo'}
+];
+let planLessons = []; // {id, day, lesson, className, subject, teacher, room}
+let studentsList=[
+  {id:1,name:'Jan Kowalski',class:'3A',login:'jan.kowalskiu',email:'jan.kowalski@sp15.edu.pl'},
+  {id:2,name:'Anna Nowak',class:'3A',login:'anna.nowaku',email:'anna.nowak@sp15.edu.pl'},
+  {id:3,name:'Piotr Wiśniewski',class:'3A',login:'piotr.wisniewskiu',email:'piotr.wisniewski@sp15.edu.pl'},
+  {id:4,name:'Maria Zielińska',class:'2B',login:'maria.zielinskau',email:'maria.zielinska@sp15.edu.pl'},
+  {id:5,name:'Tomasz Kamiński',class:'2B',login:'tomasz.kaminskiu',email:'tomasz.kaminski@sp15.edu.pl'},
+  {id:6,name:'Karolina Lewandowska',class:'1A',login:'karolina.lewandowskau',email:'karolina.lewandowska@sp15.edu.pl'}
+];
+let classesList=[
+  {id:1,name:'1A',level:'1',tutor:'mgr Barbara Wiśniewska',students:24,room:'s.2'},
+  {id:2,name:'1B',level:'1',tutor:'mgr Cezary Kowalski',students:22,room:'s.3'},
+  {id:3,name:'2A',level:'2',tutor:'mgr Anna Nowak',students:25,room:'s.5'},
+  {id:4,name:'2B',level:'2',tutor:'mgr Dorota Lewandowska',students:23,room:'s.6'},
+  {id:5,name:'3A',level:'3',tutor:'mgr Ewa Kamińska',students:26,room:'s.8'},
+  {id:6,name:'3B',level:'3',tutor:'mgr Piotr Zieliński',students:24,room:'s.9'}
+];
+let groupsList=[
+  {id:1,name:'Koło matematyczne',type:'zajęcia dodatkowe',leader:'mgr Anna Nowak',members:12},
+  {id:2,name:'Koło teatralne',type:'zajęcia dodatkowe',leader:'mgr Barbara Wiśniewska',members:15},
+  {id:3,name:'Chór szkolny',type:'zajęcia dodatkowe',leader:'mgr Katarzyna Szymańska',members:18},
+  {id:4,name:'SKS – piłka nożna',type:'sport',leader:'mgr Tomasz Wójcik',members:16},
+  {id:5,name:'Grupa wyrównawcza – język angielski',type:'wyrównawcza',leader:'mgr Dorota Lewandowska',members:8}
+];
+let generatedLogins=[];
+let nextId=20;
+let dynamicAccounts = {};
+var PASS_WORDS = ['ryba','kot','pies','lyzka','kolor','dom','las','morze','slonce','ksiezyc','auto','rower','pilka','ksiazka','szkola','tablica','kreda','plecak','zeszyt','olowek','jablko','gruszka','banan','woda','herbata','kawa','chleb','ser','maslo','mleko','ptak','kwiat','drzewo','gora','rzeka','jezioro','most','ulica','park'];
+function genPass(){
+  var w = PASS_WORDS[Math.floor(Math.random()*PASS_WORDS.length)];
+  var n = Math.floor(Math.random()*90)+10;
+  return w + n;
+}
+function genTeacherLogin(name){
+  var parts = (name||'').toLowerCase().replace(/mgr\.?\s*/g,'').trim().split(/\s+/);
+  var first = (parts[0]||'n')[0] || 'n';
+  var last = (parts[parts.length-1] || 'nauczyciel').replace(/ą/g,'a').replace(/ę/g,'e').replace(/ó/g,'o').replace(/ł/g,'l').replace(/ń/g,'n').replace(/ś/g,'s').replace(/ć/g,'c').replace(/ź/g,'z').replace(/ż/g,'z');
+  var base = first+'.'+last;
+  var login = base, i = 1;
+  while(dynamicAccounts[login] || login==='a.nowak' || login==='b.wisniewska' || login==='adminu100'){ login = base + i; i++; }
+  return login;
+}
+function genStudentLogin(name){
+  var parts = (name||'').toLowerCase().trim().split(/\s+/);
+  var first = (parts[0]||'uczen').replace(/ą/g,'a').replace(/ę/g,'e').replace(/ó/g,'o').replace(/ł/g,'l').replace(/ń/g,'n').replace(/ś/g,'s').replace(/ć/g,'c').replace(/ź/g,'z').replace(/ż/g,'z');
+  var last = (parts[1]||parts[0]||'uczen').replace(/ą/g,'a').replace(/ę/g,'e').replace(/ó/g,'o').replace(/ł/g,'l').replace(/ń/g,'n').replace(/ś/g,'s').replace(/ć/g,'c').replace(/ź/g,'z').replace(/ż/g,'z');
+  var base = first+'.'+last+'u';
+  var login = base, i = 1;
+  while(dynamicAccounts[login] || login==='jan.kowalskiu' || login==='123456u'){ login = first+'.'+last+i+'u'; i++; }
+  return login;
+}
+
+
+
+
+/* ========== TRWAŁY ZAPIS DANYCH ========== */
+var DATA_KEY = 'librus_synergia_db_v3';
+
+function storageOk(){
+  try {
+    localStorage.setItem('__t','1');
+    localStorage.removeItem('__t');
+    return true;
+  } catch(e){ return false; }
+}
+
+function collectState(){
+  return {
+    v: 3,
+    teachers: teachers,
+    studentsList: studentsList,
+    classesList: classesList,
+    groupsList: groupsList,
+    subjectsList: subjectsList,
+    planLessons: planLessons,
+    announcements: announcements,
+    substitutions: substitutions,
+    directorNotes: directorNotes,
+    generatedLogins: generatedLogins,
+    dynamicAccounts: dynamicAccounts,
+    classArchive: classArchive,
+    userProfiles: userProfiles,
+    nextId: nextId,
+    savedAt: new Date().toISOString()
+  };
+}
+
+function applyState(d){
+  if(!d || typeof d !== 'object') return false;
+  if(Array.isArray(d.teachers)) teachers = d.teachers;
+  if(Array.isArray(d.studentsList)) studentsList = d.studentsList;
+  if(Array.isArray(d.classesList)) classesList = d.classesList;
+  if(Array.isArray(d.groupsList)) groupsList = d.groupsList;
+  if(Array.isArray(d.subjectsList)) subjectsList = d.subjectsList;
+  if(Array.isArray(d.planLessons)) planLessons = d.planLessons;
+  if(Array.isArray(d.announcements)) announcements = d.announcements;
+  if(Array.isArray(d.substitutions)) substitutions = d.substitutions;
+  if(Array.isArray(d.directorNotes)) directorNotes = d.directorNotes;
+  if(Array.isArray(d.generatedLogins)) generatedLogins = d.generatedLogins;
+  if(d.dynamicAccounts && typeof d.dynamicAccounts === 'object') dynamicAccounts = d.dynamicAccounts;
+  if(Array.isArray(d.classArchive)) classArchive = d.classArchive;
+  if(d.userProfiles && typeof d.userProfiles === 'object') userProfiles = d.userProfiles;
+  if(typeof d.nextId === 'number') nextId = d.nextId;
+  return true;
+}
+
+function saveData(){
+  try {
+    if(!storageOk()){
+      showSaveStatus(false, 'localStorage niedostępny');
+      return false;
+    }
+    var str = JSON.stringify(collectState());
+    localStorage.setItem(DATA_KEY, str);
+    // stary klucz też (kompatybilność)
+    try { localStorage.setItem('librus_data_v1', str); } catch(e){}
+    var verify = localStorage.getItem(DATA_KEY);
+    if(!verify){
+      showSaveStatus(false, 'weryfikacja nieudana');
+      return false;
+    }
+    showSaveStatus(true);
+    return true;
+  } catch(e){
+    console.error('saveData', e);
+    showSaveStatus(false, e.message);
+    return false;
+  }
+}
+
+function loadData(){
+  try {
+    var raw = localStorage.getItem(DATA_KEY);
+    if(!raw) raw = localStorage.getItem('librus_data_v1');
+    if(!raw){
+      showSaveStatus(false, 'brak zapisu');
+      return false;
+    }
+    var d = JSON.parse(raw);
+    applyState(d);
+    showSaveStatus(true);
+    console.log('[Librus] Wczytano zapis z', d.savedAt);
+    return true;
+  } catch(e){
+    console.error('loadData', e);
+    showSaveStatus(false, e.message);
+    return false;
+  }
+}
+
+function showSaveStatus(ok, err){ /* status ukryty */ }
+
+function exportData(){
+  saveData();
+  var str = JSON.stringify(collectState(), null, 2);
+  var blob = new Blob([str], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'librus-backup.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  toast('Kopia zapisana na dysk (librus-backup.json)');
+}
+
+function importData(){
+  var inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = '.json,application/json';
+  inp.onchange = function(){
+    var file = inp.files && inp.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try {
+        var d = JSON.parse(reader.result);
+        applyState(d);
+        saveData();
+        toast('Zaimportowano – dane przywrócone');
+        if(typeof currentRole !== 'undefined' && currentRole){
+          renderSidebar();
+          renderContent(getDefaultTab());
+        }
+      } catch(e){
+        toast('Błąd pliku: '+e.message, true);
+      }
+    };
+    reader.readAsText(file);
+  };
+  inp.click();
+}
+
+// Wczytaj natychmiast
+var classArchive = classArchive || [];
+var userProfiles = userProfiles || {};
+loadData();
+
+// Zapisuj też przy każdej zmianie widoczności / wyjściu
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState === 'hidden') saveData();
+});
+window.addEventListener('pagehide', function(){ saveData(); });
+window.addEventListener('beforeunload', function(){ saveData(); });
+
+function switchLoginRole(role){ currentRole = role; }
+function showLoginError(msg){
+  var el = document.getElementById('login-error');
+  if(el){ el.style.display = 'block'; el.textContent = msg; }
+  else alert(msg);
+}
+function doLogin(){
+  try {
+    var loginEl = document.getElementById('login');
+    var passEl = document.getElementById('password');
+    var login = loginEl ? String(loginEl.value).trim() : '';
+    var pass = passEl ? String(passEl.value) : '';
+    if(!login || !pass){
+      showLoginError('Wpisz login i hasło');
+      return false;
+    }
+
+    var accounts = {
+      'adminu100': { pass: 'admin@#', role: 'dyrektor', name: 'mgr Janusz Kowalczyk', initials: 'JK', email: 'dyrektor@sp15.edu.pl' },
+      'a.nowak': { pass: 'nauczyciel1', role: 'nauczyciel', name: 'mgr Anna Nowak', subject: 'Matematyka', initials: 'AN', email: 'a.nowak@sp15.edu.pl' },
+      'b.wisniewska': { pass: 'nauczyciel1', role: 'nauczyciel', name: 'mgr Barbara Wiśniewska', subject: 'Język polski', initials: 'BW', email: 'b.wisniewska@sp15.edu.pl' },
+      '123456u': { pass: 'uczen1', role: 'uczen', name: 'Jan Kowalski', class: '3A', initials: 'JK', email: 'jan.kowalski@sp15.edu.pl' },
+      'jan.kowalskiu': { pass: 'uczen1', role: 'uczen', name: 'Jan Kowalski', class: '3A', initials: 'JK', email: 'jan.kowalski@sp15.edu.pl' }
+    };
+
+    var acc = accounts[login] || dynamicAccounts[login];
+    if(acc && userProfiles[login] && userProfiles[login].pass){
+      // hasło zmienione w profilu
+      if(userProfiles[login].pass !== pass){
+        showLoginError('Nieprawidłowy login lub hasło');
+        return false;
+      }
+    } else if(!acc || acc.pass !== pass){
+      showLoginError('Nieprawidłowy login lub hasło');
+      return false;
+    }
+    if(!acc){
+      showLoginError('Nieprawidłowy login lub hasło');
+      return false;
+    }
+
+    currentRole = acc.role;
+    currentUser = {
+      name: acc.name,
+      initials: acc.initials || '',
+      role: acc.role,
+      email: acc.email || '',
+      class: acc.class || '',
+      subject: acc.subject || '',
+      phone: '',
+      login: login
+    };
+    // zastosuj zapisany profil
+    if(userProfiles[login]){
+      var pr = userProfiles[login];
+      if(pr.name) currentUser.name = pr.name;
+      if(pr.email) currentUser.email = pr.email;
+      if(pr.phone) currentUser.phone = pr.phone;
+      if(pr.class) currentUser.class = pr.class;
+      if(pr.subject) currentUser.subject = pr.subject;
+      var parts = (currentUser.name||'').split(' ');
+      currentUser.initials = ((parts[0]&&parts[0][0])||'')+((parts[1]&&parts[1][0])||'');
+    }
+
+
+    var err = document.getElementById('login-error');
+    if(err) err.style.display = 'none';
+
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('user-name').textContent = currentUser.name + (currentUser.class ? ' · ' + currentUser.class : '');
+    document.getElementById('user-avatar').textContent = currentUser.initials;
+    document.getElementById('role-badge').textContent = ({uczen:'Uczeń',nauczyciel:'Nauczyciel',dyrektor:'Dyrektor'})[currentRole];
+    renderSidebar();
+    renderContent(getDefaultTab());
+    saveData(); showSaveStatus(storageOk());
+  } catch(err) {
+    console.error(err);
+    showLoginError('Błąd: ' + err.message);
+  }
+  return false;
+}
+window.addEventListener('beforeunload', function(){ try{ saveData(); }catch(e){} });
+document.addEventListener('keydown', function(ev){
+  if(ev.key === 'Enter'){
+    var lp = document.getElementById('login-page');
+    if(lp && lp.style.display !== 'none') doLogin();
+  }
+});
+function logout(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('login-page').style.display='flex';
+  document.getElementById('login-form').reset();
+}
+function getDefaultTab(){return currentRole==='dyrektor'?'d-dashboard':currentRole==='nauczyciel'?'n-dashboard':'u-dashboard'}
+
+function renderSidebar(){
+  const sb=document.getElementById('sidebar');
+  let html='';
+  if(currentRole==='uczen'){
+    html=`<div class="sidebar-item active" data-tab="u-dashboard" onclick="nav(this,'u-dashboard')"><span class="icon">🏠</span><span>Pulpit</span></div>
+    <div class="sidebar-item" data-tab="u-oceny" onclick="nav(this,'u-oceny')"><span class="icon">📊</span><span>Oceny</span></div>
+    <div class="sidebar-item" data-tab="u-frekwencja" onclick="nav(this,'u-frekwencja')"><span class="icon">📅</span><span>Frekwencja</span></div>
+    <div class="sidebar-item" data-tab="u-plan" onclick="nav(this,'u-plan')"><span class="icon">🗓️</span><span>Plan lekcji</span></div>
+    <div class="sidebar-item" data-tab="u-wiadomosci" onclick="nav(this,'u-wiadomosci')"><span class="icon">✉️</span><span>Wiadomości <span class="badge">3</span></span></div>
+    <div class="sidebar-item" data-tab="u-zadania" onclick="nav(this,'u-zadania')"><span class="icon">📝</span><span>Zadania</span></div>
+    <div class="sidebar-item" data-tab="u-terminarz" onclick="nav(this,'u-terminarz')"><span class="icon">📌</span><span>Terminarz</span></div>
+    <div class="sidebar-section">Inne</div>
+    <div class="sidebar-item" data-tab="u-ogloszenia" onclick="nav(this,'u-ogloszenia')"><span class="icon">📢</span><span>Ogłoszenia</span></div>
+    <div class="sidebar-section">Konto</div>
+    <div class="sidebar-item" data-tab="u-profil" onclick="nav(this,'u-profil')"><span class="icon">👤</span><span>Mój profil</span></div>`;
+  } else if(currentRole==='nauczyciel'){
+    html=`<div class="sidebar-item active" data-tab="n-dashboard" onclick="nav(this,'n-dashboard')"><span class="icon">🏠</span><span>Pulpit</span></div>
+    <div class="sidebar-item" data-tab="n-oceny" onclick="nav(this,'n-oceny')"><span class="icon">📊</span><span>Wstaw oceny</span></div>
+    <div class="sidebar-item" data-tab="n-frekwencja" onclick="nav(this,'n-frekwencja')"><span class="icon">📅</span><span>Frekwencja</span></div>
+    <div class="sidebar-item" data-tab="n-plan" onclick="nav(this,'n-plan')"><span class="icon">🗓️</span><span>Mój plan</span></div>
+    <div class="sidebar-item" data-tab="n-wiadomosci" onclick="nav(this,'n-wiadomosci')"><span class="icon">✉️</span><span>Wiadomości</span></div>
+    <div class="sidebar-item" data-tab="n-zadania" onclick="nav(this,'n-zadania')"><span class="icon">📝</span><span>Zadania domowe</span></div>
+    <div class="sidebar-section">Inne</div>
+    <div class="sidebar-item" data-tab="n-ogloszenia" onclick="nav(this,'n-ogloszenia')"><span class="icon">📢</span><span>Ogłoszenia</span></div>
+    <div class="sidebar-section">Konto</div>
+    <div class="sidebar-item" data-tab="n-profil" onclick="nav(this,'n-profil')"><span class="icon">👤</span><span>Mój profil</span></div>`;
+  } else {
+    html=`<div class="sidebar-item active" data-tab="d-dashboard" onclick="nav(this,'d-dashboard')"><span class="icon">🏠</span><span>Pulpit dyrektora</span></div>
+    <div class="sidebar-item" data-tab="d-nauczyciele" onclick="nav(this,'d-nauczyciele')"><span class="icon">👩‍🏫</span><span>Nauczyciele</span></div>
+    <div class="sidebar-item" data-tab="d-uczniowie" onclick="nav(this,'d-uczniowie')"><span class="icon">🎒</span><span>Uczniowie</span></div>
+    <div class="sidebar-item" data-tab="d-klasy" onclick="nav(this,'d-klasy')"><span class="icon">🏫</span><span>Klasy</span></div>
+    <div class="sidebar-item" data-tab="d-grupy" onclick="nav(this,'d-grupy')"><span class="icon">👥</span><span>Grupy</span></div>
+    <div class="sidebar-item" data-tab="d-loginy" onclick="nav(this,'d-loginy')"><span class="icon">🔑</span><span>Generuj loginy</span></div>
+    <div class="sidebar-item" data-tab="d-przedmioty" onclick="nav(this,'d-przedmioty')"><span class="icon">📚</span><span>Przedmioty</span></div>
+    <div class="sidebar-item" data-tab="d-plan" onclick="nav(this,'d-plan')"><span class="icon">🗓️</span><span>Plan lekcji</span></div>
+    <div class="sidebar-item" data-tab="d-zastepstwa" onclick="nav(this,'d-zastepstwa')"><span class="icon">🔄</span><span>Zastępstwa</span></div>
+    <div class="sidebar-item" data-tab="d-ogloszenia" onclick="nav(this,'d-ogloszenia')"><span class="icon">📢</span><span>Ogłoszenia</span></div>
+    <div class="sidebar-item" data-tab="d-wiadomosci" onclick="nav(this,'d-wiadomosci')"><span class="icon">✉️</span><span>Wiadomości</span></div>
+    <div class="sidebar-item" data-tab="d-uwagi" onclick="nav(this,'d-uwagi')"><span class="icon">📋</span><span>Uwagi dyrektora</span></div>
+    <div class="sidebar-section">Konto</div>
+    <div class="sidebar-item" data-tab="d-profil" onclick="nav(this,'d-profil')"><span class="icon">👤</span><span>Mój profil</span></div>`;
+  }
+  sb.innerHTML=html;
+}
+function nav(el,tab){
+  document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  renderContent(tab);
+}
+
+function renderContent(tab){
+  const main=document.getElementById('main-content');
+  const map={
+    'u-dashboard':renderUDashboard,'u-oceny':renderUOceny,'u-frekwencja':renderUFrekwencja,'u-plan':renderUPlan,
+    'u-wiadomosci':renderUWiadomosci,'u-zadania':renderUZadania,'u-terminarz':renderUTerminarz,'u-ogloszenia':renderUOgloszenia,'u-profil':renderProfil,
+    'n-dashboard':renderNDashboard,'n-oceny':renderNOceny,'n-frekwencja':renderNFrekwencja,'n-plan':renderNPlan,
+    'n-wiadomosci':renderNWiadomosci,'n-zadania':renderNZadania,'n-ogloszenia':renderNOgloszenia,'n-profil':renderProfil,
+    'd-dashboard':renderDDashboard,'d-nauczyciele':renderDNauczyciele,'d-uczniowie':renderDUczniowie,'d-klasy':renderDKlasy,'d-grupy':renderDGrupy,
+    'd-loginy':renderDLoginy,'d-przedmioty':renderDPrzedmioty,'d-plan':renderDPlan,
+    'd-zastepstwa':renderDZastepstwa,'d-ogloszenia':renderDOgloszenia,'d-wiadomosci':renderDWiadomosci,'d-uwagi':renderDUwagi,
+    'd-profil':renderProfil
+  };
+  if(map[tab])map[tab](main);
+}
+
+function renderUDashboard(m){m.innerHTML=`<div class="page-title">Pulpit · Jan Kowalski · 3A <span style="font-size:13px;color:#888;font-weight:400">· 4 września 2026</span></div>
+<div class="stats"><div class="stat-card"><div class="stat-value">4,42</div><div class="stat-label">Średnia ocen</div></div>
+<div class="stat-card"><div class="stat-value">94%</div><div class="stat-label">Frekwencja</div></div>
+<div class="stat-card"><div class="stat-value">3</div><div class="stat-label">Nowe wiadomości</div></div>
+<div class="stat-card"><div class="stat-value">2</div><div class="stat-label">Zadania do zrobienia</div></div></div>
+<div class="card"><div class="card-header">Ostatnie oceny</div><div class="card-body" style="padding:0">
+<table><thead><tr><th>Przedmiot</th><th>Ocena</th><th>Kategoria</th><th>Data</th><th>Nauczyciel</th></tr></thead>
+<tbody>
+<tr><td>Matematyka</td><td><span class="grade g5">5-</span></td><td>Kartkówka – wzory</td><td>03.09.2026</td><td>mgr A. Nowak</td></tr>
+<tr><td>Język polski</td><td><span class="grade g5">5</span></td><td>Wypracowanie</td><td>02.09.2026</td><td>mgr B. Wiśniewska</td></tr>
+<tr><td>Historia</td><td><span class="grade g5">5</span></td><td>Odpowiedź ustna</td><td>01.09.2026</td><td>mgr C. Kowalski</td></tr>
+<tr><td>Język angielski</td><td><span class="grade g4">4</span></td><td>Praca domowa</td><td>29.08.2026</td><td>mgr D. Lewandowska</td></tr>
+<tr><td>Biologia</td><td><span class="grade g4">4</span></td><td>Sprawdzian</td><td>28.08.2026</td><td>mgr E. Kamińska</td></tr>
+</tbody></table></div></div>
+<div class="card"><div class="card-header">Najbliższe lekcje dziś (4.09)</div><div class="card-body">
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div style="background:#e8f4e8;border-left:4px solid #28a745;padding:10px 14px;border-radius:4px;min-width:150px"><div style="font-weight:600">1. Matematyka</div><div style="font-size:12px;color:#666">08:00–08:45 · s.12 · mgr A. Nowak</div></div>
+<div style="background:#e8f4e8;border-left:4px solid #28a745;padding:10px 14px;border-radius:4px;min-width:150px"><div style="font-weight:600">2. Język polski</div><div style="font-size:12px;color:#666">08:55–09:40 · s.5 · mgr B. Wiśniewska</div></div>
+<div style="background:#fff3cd;border-left:4px solid #ffc107;padding:10px 14px;border-radius:4px;min-width:150px"><div style="font-weight:600">3. WF</div><div style="font-size:12px;color:#666">09:50–10:35 · sala gimn. · mgr T. Wójcik</div></div>
+<div style="background:#e8f4e8;border-left:4px solid #28a745;padding:10px 14px;border-radius:4px;min-width:150px"><div style="font-weight:600">4. Historia</div><div style="font-size:12px;color:#666">10:55–11:40 · s.8 · mgr C. Kowalski</div></div>
+</div></div></div>`}
+
+function renderUOceny(m){m.innerHTML=`<div class="page-title">Oceny · Jan Kowalski · 3A</div><div class="card"><div class="card-header">Oceny cząstkowe – rok szkolny 2026/2027 · Semestr I</div>
+<div class="card-body" style="padding:0"><table><thead><tr><th>Przedmiot</th><th>Oceny</th><th>Średnia</th><th>Przewidywana</th><th>Nauczyciel</th></tr></thead>
+<tbody>
+<tr><td><strong>Matematyka</strong></td><td><span class="grade g5">5</span> <span class="grade g4">4</span> <span class="grade g5">5</span> <span class="grade g6">6</span> <span class="grade g5">5-</span></td><td>4,95</td><td><span class="grade g5">5</span></td><td>mgr A. Nowak</td></tr>
+<tr><td><strong>Język polski</strong></td><td><span class="grade g4">4+</span> <span class="grade g3">3</span> <span class="grade g4">4</span> <span class="grade g5">5</span></td><td>4,13</td><td><span class="grade g4">4</span></td><td>mgr B. Wiśniewska</td></tr>
+<tr><td><strong>Język angielski</strong></td><td><span class="grade g5">5</span> <span class="grade g5">5-</span> <span class="grade g4">4</span> <span class="grade g5">5</span></td><td>4,75</td><td><span class="grade g5">5</span></td><td>mgr D. Lewandowska</td></tr>
+<tr><td><strong>Historia</strong></td><td><span class="grade g5">5</span> <span class="grade g4">4</span> <span class="grade g5">5</span></td><td>4,67</td><td><span class="grade g5">5</span></td><td>mgr C. Kowalski</td></tr>
+<tr><td><strong>Biologia</strong></td><td><span class="grade g3">3</span> <span class="grade g4">4</span> <span class="grade g3">3+</span> <span class="grade g4">4</span></td><td>3,63</td><td><span class="grade g4">4</span></td><td>mgr E. Kamińska</td></tr>
+<tr><td><strong>Chemia</strong></td><td><span class="grade g4">4</span> <span class="grade g5">5</span> <span class="grade g4">4-</span></td><td>4,17</td><td><span class="grade g4">4</span></td><td>mgr P. Zieliński</td></tr>
+<tr><td><strong>Fizyka</strong></td><td><span class="grade g2">2</span> <span class="grade g3">3</span> <span class="grade g3">3</span></td><td>2,67</td><td><span class="grade g3">3</span></td><td>mgr P. Zieliński</td></tr>
+<tr><td><strong>Geografia</strong></td><td><span class="grade g4">4</span> <span class="grade g5">5</span></td><td>4,50</td><td><span class="grade g5">5</span></td><td>mgr K. Szymańska</td></tr>
+<tr><td><strong>Wychowanie fizyczne</strong></td><td><span class="grade g5">5</span> <span class="grade g5">5</span> <span class="grade g6">6</span></td><td>5,33</td><td><span class="grade g5">5</span></td><td>mgr T. Wójcik</td></tr>
+</tbody></table></div></div>`}
+
+function renderUFrekwencja(m){m.innerHTML=`<div class="page-title">Frekwencja · Jan Kowalski · 3A</div><div class="stats">
+<div class="stat-card"><div class="stat-value" style="color:#28a745">156</div><div class="stat-label">Obecności</div></div>
+<div class="stat-card"><div class="stat-value" style="color:#dc3545">7</div><div class="stat-label">Nieobecności</div></div>
+<div class="stat-card"><div class="stat-value" style="color:#fd7e14">4</div><div class="stat-label">Spóźnienia</div></div>
+<div class="stat-card"><div class="stat-value">94%</div><div class="stat-label">Frekwencja</div></div></div>
+<div class="card"><div class="card-header">Szczegóły frekwencji – wrzesień 2026</div><div class="card-body" style="padding:0">
+<table><thead><tr><th>Data</th><th>Lekcja</th><th>Przedmiot</th><th>Status</th><th>Uwagi</th></tr></thead>
+<tbody>
+<tr><td>04.09.2026</td><td>1–5</td><td>wszystkie</td><td style="color:#28a745;font-weight:600">Obecny</td><td></td></tr>
+<tr><td>03.09.2026</td><td>3</td><td>Historia</td><td style="color:#28a745;font-weight:600">Obecny</td><td></td></tr>
+<tr><td>02.09.2026</td><td>1</td><td>Matematyka</td><td style="color:#fd7e14;font-weight:600">Spóźnienie</td><td>ok. 7 min</td></tr>
+<tr><td>01.09.2026</td><td>4</td><td>Język angielski</td><td style="color:#dc3545;font-weight:600">Nieobecny</td><td>nieusprawiedliwiona</td></tr>
+<tr><td>29.08.2026</td><td>1–6</td><td>wszystkie</td><td style="color:#6c757d;font-weight:600">Usprawiedliwiona</td><td>zwolnienie lekarskie</td></tr>
+<tr><td>28.08.2026</td><td>2</td><td>Język polski</td><td style="color:#fd7e14;font-weight:600">Spóźnienie</td><td>3 min</td></tr>
+</tbody></table></div></div>`}
+
+function renderUPlan(m){
+  var klasa = (currentUser && currentUser.class) || '3A';
+  var days = ['Poniedziałek','Wtorek','Środa','Czwartek','Piątek'];
+  var dayKeys = ['pn','wt','sr','cz','pt'];
+  var hours = [
+    {n:1,t:'8:00–8:45'},{n:2,t:'8:55–9:40'},{n:3,t:'9:50–10:35'},
+    {n:4,t:'10:55–11:40'},{n:5,t:'11:50–12:35'},{n:6,t:'12:45–13:30'}
+  ];
+  var colorMap = {Matematyka:'tt-mat','Język polski':'tt-pol','Język angielski':'tt-ang',Historia:'tt-his',Biologia:'tt-bio',Chemia:'tt-che',Fizyka:'tt-fiz','Wychowanie fizyczne':'tt-wf',Geografia:'tt-geo'};
+  subjectsList.forEach(function(s){ if(s.name) colorMap[s.name] = 'tt-'+(s.color||'other'); });
+  var classExists = classesList.some(function(c){return c.name===klasa;});
+  var myPlan = planLessons.filter(function(p){return p.className===klasa;});
+
+  if(!classExists){
+    m.innerHTML = '<div class="page-title">Plan lekcji</div><div class="card"><div class="card-body"><p style="color:#888">Brak aktywnej klasy „'+klasa+'” w systemie – plan niedostępny.</p></div></div>';
+    return;
+  }
+  if(!myPlan.length){
+    m.innerHTML = '<div class="page-title">Plan lekcji · '+klasa+'</div><div class="card"><div class="card-body"><p style="color:#888">Plan lekcji dla klasy '+klasa+' nie został jeszcze ułożony.</p></div></div>';
+    return;
+  }
+  var grid = '<div class="timetable"><div class="tt-header">Lekcja</div>';
+  days.forEach(function(d){ grid += '<div class="tt-header">'+d+'</div>'; });
+  hours.forEach(function(h){
+    grid += '<div class="tt-time">'+h.n+'<small>'+h.t+'</small></div>';
+    for(var di=0; di<5; di++){
+      var cell = myPlan.find(function(p){ return Number(p.lesson)===h.n && p.day===dayKeys[di]; });
+      if(cell){
+        var cls = colorMap[cell.subject] || 'tt-other';
+        grid += '<div class="tt-lesson '+cls+'"><div class="subject">'+cell.subject+'</div>'+
+          (cell.teacher?'<div class="teacher">'+cell.teacher+'</div>':'')+
+          (cell.room?'<div class="room">'+cell.room+'</div>':'')+'</div>';
+      } else grid += '<div class="tt-empty"></div>';
+    }
+  });
+  grid += '</div>';
+  m.innerHTML = '<div class="page-title">Plan lekcji · '+klasa+'</div><div class="card"><div class="card-body" style="padding:12px;overflow-x:auto">'+grid+'</div></div>';
+}
+
+function renderUWiadomosci(m){m.innerHTML=`<div class="page-title">Wiadomości <span class="badge">3</span></div><div class="card"><div class="card-body">
+${messages.map(x=>`<div class="message-item"><div class="msg-avatar">${x.initials}</div><div style="flex:1"><div class="msg-sender">${x.from}</div><div class="msg-preview">${x.text}</div></div><div class="msg-date">${x.date}</div></div>`).join('')}
+</div></div>`}
+
+function renderUZadania(m){m.innerHTML=`<div class="page-title">Zadania domowe</div><div class="card"><div class="card-body" style="padding:0">
+<table><thead><tr><th>Przedmiot</th><th>Temat</th><th>Nauczyciel</th><th>Termin</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Język polski</td><td>Wypracowanie „Moje wakacje” (min. 200 słów)</td><td>mgr B. Wiśniewska</td><td>06.09.2026</td><td style="color:#dc3545;font-weight:600">Na jutro!</td></tr>
+<tr><td>Matematyka</td><td>Zadania 12–18 ze zbioru (str. 45) – geometria</td><td>mgr A. Nowak</td><td>08.09.2026</td><td style="color:#fd7e14;font-weight:600">Do zrobienia</td></tr>
+<tr><td>Język angielski</td><td>Słówka Unit 1 – nauczyć się na kartkówkę</td><td>mgr D. Lewandowska</td><td>08.09.2026</td><td style="color:#fd7e14;font-weight:600">Do zrobienia</td></tr>
+<tr><td>Historia</td><td>Notatka z podręcznika – rozdział 3 (Piastowie)</td><td>mgr C. Kowalski</td><td>10.09.2026</td><td style="color:#28a745;font-weight:600">Zrobione</td></tr>
+</tbody></table></div></div>`}
+
+function renderUOgloszenia(m){m.innerHTML=`<div class="page-title">Ogłoszenia</div><div class="card"><div class="card-body">
+${announcements.map(a=>`<div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #eee"><div style="font-weight:600;margin-bottom:3px">${a.title}</div><div style="font-size:12px;color:#888;margin-bottom:6px">${a.date}</div><div>${a.text}</div></div>`).join('')}
+</div></div>`}
+
+
+function renderUTerminarz(m){
+  var items = [
+    {d:'06',m:'WRZ',title:'Wypracowanie „Moje wakacje”',meta:'Język polski · mgr B. Wiśniewska · termin oddania',tag:'zadanie',tagLabel:'Zadanie domowe'},
+    {d:'08',m:'WRZ',title:'Kartkówka – słówka Unit 1',meta:'Język angielski · 3. lekcja · mgr D. Lewandowska',tag:'kartkowka',tagLabel:'Kartkówka'},
+    {d:'09',m:'WRZ',title:'Sprawdzian – geometria (rozdział 2)',meta:'Matematyka · 2. lekcja · mgr A. Nowak',tag:'sprawdzian',tagLabel:'Sprawdzian'},
+    {d:'10',m:'WRZ',title:'Kartkówka – budowa komórki',meta:'Biologia · mgr E. Kamińska',tag:'kartkowka',tagLabel:'Kartkówka'},
+    {d:'12',m:'WRZ',title:'Zebranie z rodzicami',meta:'Sala 1 (aula) · godz. 17:00 · strój galowy',tag:'zebranie',tagLabel:'Zebranie'},
+    {d:'12',m:'WRZ',title:'Apel rozpoczęcia roku szkolnego',meta:'Aula · godz. 9:00 · strój galowy obowiązkowy',tag:'wydarzenie',tagLabel:'Wydarzenie szkolne'},
+    {d:'15',m:'WRZ',title:'Kartkówka ze słówek',meta:'Język angielski · 3. lekcja',tag:'kartkowka',tagLabel:'Kartkówka'},
+    {d:'20',m:'WRZ',title:'Wycieczka klasowa',meta:'Klasa 3A · szczegóły u wychowawcy',tag:'wydarzenie',tagLabel:'Wycieczka'}
+  ];
+  var html = '<div class="page-title">Terminarz <span style="font-size:13px;font-weight:400;color:#888">· wrzesień 2026</span></div>'+
+    '<div class="card"><div class="card-header">Nadchodzące wydarzenia</div><div class="card-body" style="padding:0">';
+  items.forEach(function(it){
+    html += '<div class="term-item"><div class="term-date"><div class="d">'+it.d+'</div><div class="m">'+it.m+'</div></div>'+
+      '<div class="term-body"><div class="term-title">'+it.title+'</div><div class="term-meta">'+it.meta+'</div>'+
+      '<span class="term-tag tag-'+it.tag+'">'+it.tagLabel+'</span></div></div>';
+  });
+  html += '</div></div>';
+  m.innerHTML = html;
+}
+function renderNDashboard(m){m.innerHTML=`<div class="page-title">Pulpit nauczyciela</div>
+<div class="stats"><div class="stat-card"><div class="stat-value">4</div><div class="stat-label">Klasy</div></div>
+<div class="stat-card"><div class="stat-value">87</div><div class="stat-label">Uczniów</div></div>
+<div class="stat-card"><div class="stat-value">2</div><div class="stat-label">Lekcje dziś</div></div>
+<div class="stat-card"><div class="stat-value">5</div><div class="stat-label">Wiadomości</div></div></div>
+<div class="card"><div class="card-header">Dzisiejsze lekcje</div><div class="card-body">
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div style="background:#e8f4e8;border-left:4px solid #28a745;padding:10px 14px;border-radius:4px"><div style="font-weight:600">1. Matematyka – 3A</div><div style="font-size:12px;color:#666">08:00 · sala 12</div></div>
+<div style="background:#e8f4e8;border-left:4px solid #28a745;padding:10px 14px;border-radius:4px"><div style="font-weight:600">4. Matematyka – 2B</div><div style="font-size:12px;color:#666">10:55 · sala 12</div></div>
+</div></div></div>
+<div class="card"><div class="card-header">Szybkie akcje</div><div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn btn-primary" onclick="document.querySelector('[data-tab=n-oceny]').click()">Wstaw ocenę</button>
+<button class="btn btn-primary" onclick="document.querySelector('[data-tab=n-frekwencja]').click()">Frekwencja</button>
+<button class="btn btn-outline" onclick="openModal('Nowa wiadomość',msgForm(),()=>{toast('Wiadomość wysłana');closeModal()})">Napisz wiadomość</button>
+</div></div>`}
+
+function renderNOceny(m){m.innerHTML=`<div class="page-title">Wstawianie ocen
+<button class="btn btn-primary btn-sm" onclick="openModal('Wstaw ocenę',gradeForm(),saveGrade)">+ Dodaj ocenę</button></div>
+<div class="card"><div class="card-header">Ostatnio wstawione</div><div class="card-body" style="padding:0">
+<table><thead><tr><th>Uczeń</th><th>Klasa</th><th>Ocena</th><th>Kategoria</th><th>Data</th></tr></thead>
+<tbody id="grades-list">
+<tr><td>Jan Kowalski</td><td>3A</td><td><span class="grade g5">5</span></td><td>Sprawdzian</td><td>03.09.2026</td></tr>
+<tr><td>Anna Nowak</td><td>3A</td><td><span class="grade g4">4</span></td><td>Kartkówka</td><td>02.09.2026</td></tr>
+</tbody></table></div></div>`}
+
+function renderNFrekwencja(m){m.innerHTML=`<div class="page-title">Frekwencja – klasa 3A
+<button class="btn btn-success btn-sm" onclick="toast('Frekwencja zapisana')">Zapisz frekwencję</button></div>
+<div class="card"><div class="card-body" style="padding:0">
+<table><thead><tr><th>Uczeń</th><th>Status</th><th>Uwagi</th></tr></thead>
+<tbody>
+<tr><td>Jan Kowalski</td><td><select style="padding:4px 8px;border-radius:4px;border:1px solid #ccc"><option selected>Obecny</option><option>Nieobecny</option><option>Spóźniony</option></select></td>
+<td><input type="text" placeholder="opcjonalnie" style="padding:4px 8px;border:1px solid #ccc;border-radius:4px;width:120px"></td></tr>
+<tr><td>Anna Nowak</td><td><select style="padding:4px 8px;border-radius:4px;border:1px solid #ccc"><option selected>Obecny</option><option>Nieobecny</option><option>Spóźniony</option></select></td>
+<td><input type="text" style="padding:4px 8px;border:1px solid #ccc;border-radius:4px;width:120px"></td></tr>
+</tbody></table></div></div>`}
+
+function renderNPlan(m){
+  m.innerHTML = '<div class="page-title">Mój plan lekcji <span style="font-size:13px;font-weight:400;color:#888">· mgr Anna Nowak · Matematyka</span></div>'+
+    '<div class="card"><div class="card-body" style="padding:12px;overflow-x:auto"><div class="timetable">'+
+    '<div class="tt-header">Lekcja</div><div class="tt-header">Pn</div><div class="tt-header">Wt</div><div class="tt-header">Śr</div><div class="tt-header">Cz</div><div class="tt-header">Pt</div>'+
+    '<div class="tt-time">1<small>8:00</small></div><div class="tt-lesson tt-mat"><div class="subject">3A</div><div class="room">sala 12</div></div><div class="tt-empty"></div><div class="tt-lesson tt-mat"><div class="subject">2B</div><div class="room">sala 12</div></div><div class="tt-lesson tt-mat"><div class="subject">3A</div><div class="room">sala 12</div></div><div class="tt-empty"></div>'+
+    '<div class="tt-time">2<small>8:55</small></div><div class="tt-empty"></div><div class="tt-lesson tt-mat"><div class="subject">3A</div><div class="room">sala 12</div></div><div class="tt-empty"></div><div class="tt-empty"></div><div class="tt-lesson tt-mat"><div class="subject">1C</div><div class="room">sala 12</div></div>'+
+    '<div class="tt-time">4<small>10:55</small></div><div class="tt-lesson tt-mat"><div class="subject">2B</div><div class="room">sala 12</div></div><div class="tt-empty"></div><div class="tt-lesson tt-mat"><div class="subject">3A</div><div class="room">sala 12</div></div><div class="tt-empty"></div><div class="tt-empty"></div>'+
+    '</div></div></div>';
+}
+
+function renderNWiadomosci(m){m.innerHTML=`<div class="page-title">Wiadomości
+<button class="btn btn-primary btn-sm" onclick="openModal('Nowa wiadomość',msgForm(),()=>{toast('Wiadomość wysłana');closeModal()})">+ Napisz</button></div>
+<div class="card"><div class="card-body">${messages.map(x=>`<div class="message-item"><div class="msg-avatar">${x.initials}</div><div style="flex:1"><div class="msg-sender">${x.from}</div><div class="msg-preview">${x.text}</div></div><div class="msg-date">${x.date}</div></div>`).join('')}</div></div>`}
+
+function renderNZadania(m){m.innerHTML=`<div class="page-title">Zadania domowe
+<button class="btn btn-primary btn-sm" onclick="openModal('Dodaj zadanie',taskForm(),()=>{toast('Zadanie dodane');closeModal()})">+ Dodaj zadanie</button></div>
+<div class="card"><div class="card-body" style="padding:0">
+<table><thead><tr><th>Klasa</th><th>Temat</th><th>Termin</th><th>Akcja</th></tr></thead>
+<tbody><tr><td>3A</td><td>Zadania 12–18 ze zbioru</td><td>08.09.2026</td><td><button class="btn btn-outline btn-sm" onclick="toast('Edycja')">Edytuj</button></td></tr>
+<tr><td>2B</td><td>Powtórka – równania</td><td>10.09.2026</td><td><button class="btn btn-outline btn-sm" onclick="toast('Edycja')">Edytuj</button></td></tr></tbody></table></div></div>`}
+
+function renderNOgloszenia(m){renderUOgloszenia(m)}
+
+function renderDDashboard(m){m.innerHTML=`<div class="page-title">Pulpit dyrektora <span style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" onclick="exportData()">Eksportuj dane</button><button class="btn btn-outline btn-sm" onclick="importData()">Importuj dane</button></span></div>
+<div class="stats"><div class="stat-card"><div class="stat-value">${teachers.length}</div><div class="stat-label">Nauczycieli</div></div>
+<div class="stat-card"><div class="stat-value">${classesList.length}</div><div class="stat-label">Klas</div></div>
+<div class="stat-card"><div class="stat-value">${groupsList.length}</div><div class="stat-label">Grup</div></div>
+<div class="stat-card"><div class="stat-value">${substitutions.length}</div><div class="stat-label">Zastępstw</div></div>
+<div class="stat-card"><div class="stat-value">${announcements.length}</div><div class="stat-label">Ogłoszeń</div></div></div>
+<div class="card"><div class="card-header">Szybkie akcje</div><div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn btn-primary" onclick="document.querySelector('[data-tab=d-nauczyciele]').click()">Dodaj nauczyciela</button>
+<button class="btn btn-primary" onclick="document.querySelector('[data-tab=d-uczniowie]').click()">Uczniowie</button>
+<button class="btn btn-primary" onclick="document.querySelector('[data-tab=d-klasy]').click()">Zarządzaj klasami</button>
+<button class="btn btn-primary" onclick="document.querySelector('[data-tab=d-grupy]').click()">Grupy</button>
+<button class="btn btn-primary" onclick="document.querySelector('[data-tab=d-loginy]').click()">Generuj loginy</button>
+<button class="btn btn-outline" onclick="document.querySelector('[data-tab=d-zastepstwa]').click()">Zastępstwa</button>
+<button class="btn btn-outline" onclick="document.querySelector('[data-tab=d-ogloszenia]').click()">Ogłoszenia</button>
+</div></div>
+<div class="card"><div class="card-header">Ostatnie zastępstwa</div><div class="card-body" style="padding:0">
+<table><thead><tr><th>Data</th><th>Lekcja</th><th>Klasa</th><th>Przedmiot</th><th>Zastępca</th></tr></thead>
+<tbody>${substitutions.map(s=>`<tr><td>${s.date}</td><td>${s.lesson}</td><td>${s.class}</td><td>${s.subject}</td><td>${s.substitute}</td></tr>`).join('')||'<tr><td colspan="5" class="empty-state">Brak</td></tr>'}</tbody></table></div></div>`}
+
+function renderDNauczyciele(m){
+  var rows = teachers.map(function(t){
+    return '<tr><td>'+t.name+'</td><td>'+t.subject+'</td><td><strong>'+t.login+'</strong></td><td>'+(t.tempPass?('<code>'+t.tempPass+'</code>'):'—')+'</td><td>'+t.email+'</td>'+
+      '<td><button class="btn btn-outline btn-sm" data-id="'+t.id+'" onclick="editTeacher(this.getAttribute(\'data-id\'))">Edytuj</button> '+
+      '<button class="btn btn-danger btn-sm" data-id="'+t.id+'" onclick="deleteTeacher(this.getAttribute(\'data-id\'))">Usuń</button></td></tr>';
+  }).join('');
+  m.innerHTML = '<div class="page-title">Nauczyciele <button class="btn btn-primary btn-sm" onclick="openModal(\'Dodaj nauczyciela\',teacherForm(),saveTeacher)">+ Dodaj nauczyciela</button></div>'+
+    '<div class="card"><div class="card-body" style="padding:0"><table><thead><tr><th>Imię i nazwisko</th><th>Przedmiot</th><th>Login</th><th>Hasło startowe</th><th>E-mail</th><th>Akcje</th></tr></thead>'+
+    '<tbody id="teachers-list">'+rows+'</tbody></table></div></div>';
+}
+
+function renderDLoginy(m){m.innerHTML=`<div class="page-title">Generowanie loginów
+<button class="btn btn-primary btn-sm" onclick="openModal('Generuj login',loginForm(),generateLogin)">+ Generuj</button></div>
+<div class="card"><div class="card-header">Wygenerowane loginy</div><div class="card-body" style="padding:0">
+<table><thead><tr><th>Typ</th><th>Imię i nazwisko</th><th>Login</th><th>Hasło tymczasowe</th><th>Data</th></tr></thead>
+<tbody id="logins-list">${generatedLogins.length?generatedLogins.map(l=>`<tr><td>${l.type}</td><td>${l.name}</td><td><strong>${l.login}</strong></td><td><code>${l.pass}</code></td><td>${l.date}</td></tr>`).join(''):'<tr><td colspan="5" class="empty-state">Brak – kliknij Generuj</td></tr>'}</tbody></table></div></div>`}
+
+
+function renderDPrzedmioty(m){
+  var rows = subjectsList.map(function(s){
+    return '<tr><td><strong>'+s.name+'</strong></td><td>'+s.short+'</td><td>'+s.color+'</td>'+
+      '<td><button class="btn btn-outline btn-sm" data-id="'+s.id+'" onclick="editSubject(this.getAttribute(\'data-id\'))">Edytuj</button> '+
+      '<button class="btn btn-danger btn-sm" data-id="'+s.id+'" onclick="deleteSubject(this.getAttribute(\'data-id\'))">Usuń</button></td></tr>';
+  }).join('') || '<tr><td colspan="4" class="empty-state">Brak przedmiotów</td></tr>';
+  m.innerHTML = '<div class="page-title">Przedmioty <button class="btn btn-primary btn-sm" onclick="openModal(\'Dodaj przedmiot\',subjectForm(),saveSubject)">+ Dodaj przedmiot</button></div>'+
+    '<div class="card"><div class="card-body" style="padding:0"><table><thead><tr><th>Nazwa</th><th>Skrót</th><th>Kolor (plan)</th><th>Akcje</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
+}
+function subjectForm(s){
+  s = s || {};
+  return '<div class="form-group"><label>Nazwa przedmiotu</label><input id="sub-name" value="'+(s.name||'')+'"></div>'+
+    '<div class="form-group"><label>Skrót</label><input id="sub-short" value="'+(s.short||'')+'" placeholder="np. Mat"></div>'+
+    '<div class="form-group"><label>Kolor w planie</label><select id="sub-color">'+
+    ['mat','pol','ang','his','bio','che','fiz','wf','geo','other'].map(function(c){
+      return '<option value="'+c+'"'+(s.color===c?' selected':'')+'>'+c+'</option>';
+    }).join('')+'</select></div>';
+}
+function saveSubject(){
+  var name=document.getElementById('sub-name').value.trim();
+  var short=document.getElementById('sub-short').value.trim();
+  var color=document.getElementById('sub-color').value;
+  if(!name){toast('Podaj nazwę',true);return;}
+  if(window._editSubjectId){
+    var s=subjectsList.find(function(x){return x.id===window._editSubjectId});
+    if(s){s.name=name;s.short=short||name.substring(0,3);s.color=color;}
+    window._editSubjectId=null;
+    toast('Przedmiot zapisany');
+  } else {
+    subjectsList.push({id:nextId++, name:name, short:short||name.substring(0,3), color:color});
+    toast('Przedmiot dodany');
+  }
+  saveData();
+  closeModal();
+  renderContent('d-przedmioty');
+}
+function editSubject(id){
+  id=Number(id);
+  var s=subjectsList.find(function(x){return x.id===id});
+  if(!s)return;
+  window._editSubjectId=id;
+  openModal('Edytuj przedmiot',subjectForm(s),saveSubject);
+}
+function deleteSubject(id){
+  id=Number(id);
+  subjectsList=subjectsList.filter(function(x){return x.id!==id});
+  saveData();
+  toast('Przedmiot usunięty');
+  renderContent('d-przedmioty');
+}
+function renderDPlan(m){
+  var days = ['Poniedziałek','Wtorek','Środa','Czwartek','Piątek'];
+  var dayKeys = ['pn','wt','sr','cz','pt'];
+  var classNames = classesList.map(function(c){return c.name;});
+  var filterClass = window._planFilterClass || (classNames[0] || '');
+  var hours = [
+    {n:1,t:'8:00–8:45'},{n:2,t:'8:55–9:40'},{n:3,t:'9:50–10:35'},
+    {n:4,t:'10:55–11:40'},{n:5,t:'11:50–12:35'},{n:6,t:'12:45–13:30'}
+  ];
+  var colorMap = {Matematyka:'tt-mat','Język polski':'tt-pol','Język angielski':'tt-ang',Historia:'tt-his',Biologia:'tt-bio',Chemia:'tt-che',Fizyka:'tt-fiz','Wychowanie fizyczne':'tt-wf',Geografia:'tt-geo'};
+  subjectsList.forEach(function(s){ if(s.name && s.color) colorMap[s.name] = 'tt-'+(s.color||'other'); });
+
+  var classSelect = '<select id="plan-class-filter" onchange="window._planFilterClass=this.value;renderContent(\'d-plan\')" style="padding:6px 10px;border-radius:5px;border:1px solid #ccc;margin-left:8px">';
+  if(!classNames.length) classSelect += '<option value="">Brak klas</option>';
+  classNames.forEach(function(cn){
+    classSelect += '<option value="'+cn+'"'+(cn===filterClass?' selected':'')+'>'+cn+'</option>';
+  });
+  classSelect += '</select>';
+
+  var grid = '<div class="timetable"><div class="tt-header">Lekcja</div>';
+  days.forEach(function(d){ grid += '<div class="tt-header">'+d+'</div>'; });
+
+  hours.forEach(function(h){
+    grid += '<div class="tt-time">'+h.n+'<small>'+h.t+'</small></div>';
+    for(var di=0; di<5; di++){
+      var cell = planLessons.find(function(p){
+        return p.className===filterClass && Number(p.lesson)===h.n && p.day===dayKeys[di];
+      });
+      if(cell){
+        var cls = colorMap[cell.subject] || 'tt-other';
+        grid += '<div class="tt-lesson '+cls+'"><div class="subject">'+cell.subject+'</div>'+
+          (cell.teacher?'<div class="teacher">'+cell.teacher+'</div>':'')+
+          (cell.room?'<div class="room">'+cell.room+'</div>':'')+
+          '<div style="margin-top:4px"><button class="btn btn-danger btn-sm" style="padding:2px 6px;font-size:10px" onclick="deletePlanLesson('+cell.id+')">Usuń</button></div></div>';
+      } else {
+        grid += '<div class="tt-empty"></div>';
+      }
+    }
+  });
+  grid += '</div>';
+
+  var emptyMsg = !classNames.length
+    ? '<p style="padding:16px;color:#888">Najpierw dodaj klasę w zakładce Klasy, potem dodawaj lekcje do planu.</p>'
+    : (!planLessons.filter(function(p){return p.className===filterClass}).length
+      ? '<p style="padding:12px 0 0;font-size:13px;color:#888">Brak lekcji w planie dla tej klasy – użyj „Dodaj lekcję”.</p>' : '');
+
+  m.innerHTML = '<div class="page-title">Plan lekcji '+classSelect+
+    ' <button class="btn btn-primary btn-sm" onclick="openModal(\'Dodaj lekcję do planu\',planForm(),savePlanLesson)" '+(classNames.length?'':'disabled')+'>+ Dodaj lekcję</button></div>'+
+    '<div class="card"><div class="card-header">Plan'+(filterClass?' · klasa '+filterClass:'')+'</div><div class="card-body" style="padding:12px;overflow-x:auto">'+
+    (classNames.length ? grid : '') + emptyMsg + '</div></div>';
+}
+function savePlanLesson(){
+  var day=document.getElementById('p-day').value;
+  var lesson=document.getElementById('p-lesson').value;
+  var cls=document.getElementById('p-class').value;
+  var subject=document.getElementById('p-subject').value;
+  var teacher=(document.getElementById('p-teacher')&&document.getElementById('p-teacher').value)||'';
+  var room=(document.getElementById('p-room')&&document.getElementById('p-room').value)||'';
+  if(!cls || !subject){toast('Wybierz klasę i przedmiot',true);return;}
+  var dayMap = {'Poniedziałek':'pn','Wtorek':'wt','Środa':'sr','Czwartek':'cz','Piątek':'pt'};
+  var dayKey = dayMap[day] || day;
+  // remove existing slot
+  planLessons = planLessons.filter(function(p){
+    return !(p.className===cls && Number(p.lesson)===Number(lesson) && p.day===dayKey);
+  });
+  planLessons.push({id:nextId++, day:dayKey, lesson:Number(lesson), className:cls, subject:subject, teacher:teacher, room:room});
+  window._planFilterClass = cls;
+  saveData();
+  toast('Lekcja dodana do planu');
+  closeModal();
+  renderContent('d-plan');
+}
+function deletePlanLesson(id){
+  id=Number(id);
+  planLessons = planLessons.filter(function(p){return p.id!==id});
+  saveData();
+  toast('Lekcja usunięta z planu');
+  renderContent('d-plan');
+}
+
+function renderDZastepstwa(m){m.innerHTML=`<div class="page-title">Zastępstwa
+<button class="btn btn-primary btn-sm" onclick="openModal('Dodaj zastępstwo',substForm(),saveSubst)">+ Dodaj zastępstwo</button></div>
+<div class="card"><div class="card-body" style="padding:0">
+<table><thead><tr><th>Data</th><th>Lekcja</th><th>Klasa</th><th>Przedmiot</th><th>Oryginał</th><th>Zastępca</th><th>Akcje</th></tr></thead>
+<tbody id="subst-list">${substitutions.map(s=>`<tr><td>${s.date}</td><td>${s.lesson}</td><td>${s.class}</td><td>${s.subject}</td><td>${s.original}</td><td>${s.substitute}</td>
+<td><button class="btn btn-danger btn-sm" onclick="deleteSubst(${s.id})">Usuń</button></td></tr>`).join('')||'<tr><td colspan="7" class="empty-state">Brak</td></tr>'}</tbody></table></div></div>`}
+
+function renderDOgloszenia(m){m.innerHTML=`<div class="page-title">Ogłoszenia
+<button class="btn btn-primary btn-sm" onclick="openModal('Nowe ogłoszenie',annForm(),saveAnn)">+ Dodaj ogłoszenie</button></div>
+<div class="card"><div class="card-body" id="ann-list">
+${announcements.map(a=>`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;gap:12px">
+<div><div style="font-weight:600">${a.title}</div><div style="font-size:12px;color:#888;margin:3px 0">${a.date}</div><div>${a.text}</div></div>
+<button class="btn btn-danger btn-sm" style="align-self:start" onclick="deleteAnn(${a.id})">Usuń</button></div>`).join('')||'<div class="empty-state">Brak</div>'}
+</div></div>`}
+
+function renderDWiadomosci(m){m.innerHTML=`<div class="page-title">Wiadomości
+<button class="btn btn-primary btn-sm" onclick="openModal('Nowa wiadomość',msgForm(),()=>{toast('Wiadomość wysłana');closeModal()})">+ Napisz</button></div>
+<div class="card"><div class="card-body">${messages.map(x=>`<div class="message-item"><div class="msg-avatar">${x.initials}</div><div style="flex:1"><div class="msg-sender">${x.from}</div><div class="msg-preview">${x.text}</div></div><div class="msg-date">${x.date}</div></div>`).join('')}</div></div>`}
+
+function renderDUwagi(m){m.innerHTML=`<div class="page-title">Uwagi dyrektora
+<button class="btn btn-primary btn-sm" onclick="openModal('Nowa uwaga dyrektora',noteForm(),saveNote)">+ Dodaj uwagę</button></div>
+<div class="card"><div class="card-body" id="notes-list">
+${directorNotes.map(n=>`<div style="margin-bottom:12px;padding:12px;background:#f8f6fb;border-radius:6px;border-left:4px solid #5c2d91;display:flex;justify-content:space-between;gap:12px">
+<div><div style="font-size:12px;color:#888;margin-bottom:4px">${n.date}</div><div>${n.text}</div></div>
+<button class="btn btn-danger btn-sm" style="align-self:start" onclick="deleteNote(${n.id})">Usuń</button></div>`).join('')||'<div class="empty-state">Brak</div>'}
+</div></div>`}
+
+function teacherForm(t){t=t||{};return '<div class="form-group"><label>Imię i nazwisko</label><input id="t-name" value="'+(t.name||'')+'"></div><div class="form-group"><label>Przedmiot</label><input id="t-subject" value="'+(t.subject||'')+'"></div><div class="form-group"><label>E-mail</label><input id="t-email" type="email" value="'+(t.email||'')+'" placeholder="auto jeśli puste"></div><p style="font-size:12px;color:#888">Login i hasło generują się automatycznie przy dodawaniu.</p>';}
+function loginForm(){return`<div class="form-group"><label>Typ konta</label><select id="l-type"><option>Uczeń</option><option>Rodzic</option><option>Nauczyciel</option></select></div>
+<div class="form-group"><label>Imię i nazwisko</label><input id="l-name" required></div>
+<div class="form-group"><label>Klasa (dla ucznia)</label><input id="l-class" placeholder="np. 3A"></div><p style="font-size:12px;color:#888">Login i hasło (np. ryba12) wygenerują się same.</p>`}
+function substForm(){return`<div class="form-row"><div class="form-group"><label>Data</label><input id="s-date" type="date" required></div>
+<div class="form-group"><label>Nr lekcji</label><input id="s-lesson" type="number" min="1" max="8" required></div></div>
+<div class="form-row"><div class="form-group"><label>Klasa</label><input id="s-class" placeholder="3A" required></div>
+<div class="form-group"><label>Przedmiot</label><input id="s-subject" required></div></div>
+<div class="form-row"><div class="form-group"><label>Nauczyciel oryginalny</label><input id="s-original" required></div>
+<div class="form-group"><label>Zastępca</label><input id="s-substitute" required></div></div>
+<div class="form-group"><label>Sala</label><input id="s-room" placeholder="12"></div>`}
+function annForm(){return`<div class="form-group"><label>Tytuł</label><input id="a-title" required></div><div class="form-group"><label>Treść</label><textarea id="a-text" rows="4" required></textarea></div>`}
+function noteForm(){return`<div class="form-group"><label>Treść uwagi</label><textarea id="n-text" rows="4" required></textarea></div>`}
+function msgForm(){return`<div class="form-group"><label>Do</label><select id="m-to"><option>Wszyscy nauczyciele</option><option>Wszyscy rodzice</option><option>Klasa 3A</option></select></div>
+<div class="form-group"><label>Temat</label><input id="m-subject" required></div>
+<div class="form-group"><label>Treść</label><textarea id="m-text" rows="4" required></textarea></div>`}
+function gradeForm(){return`<div class="form-group"><label>Uczeń</label><select id="g-student"><option>Jan Kowalski (3A)</option><option>Anna Nowak (3A)</option><option>Piotr Wiśniewski (2B)</option></select></div>
+<div class="form-row"><div class="form-group"><label>Ocena</label><select id="g-grade"><option>6</option><option>5</option><option selected>4</option><option>3</option><option>2</option><option>1</option></select></div>
+<div class="form-group"><label>Kategoria</label><select id="g-cat"><option>Sprawdzian</option><option>Kartkówka</option><option>Odpowiedź</option><option>Praca domowa</option></select></div></div>`}
+function taskForm(){return`<div class="form-group"><label>Klasa</label><input id="task-class" placeholder="3A" required></div>
+<div class="form-group"><label>Temat zadania</label><input id="task-title" required></div>
+<div class="form-group"><label>Termin</label><input id="task-date" type="date" required></div>`}
+function planForm(){
+  var classOpts = classesList.map(function(c){return '<option>'+c.name+'</option>';}).join('') || '<option value="">Brak klas</option>';
+  var subOpts = subjectsList.map(function(s){return '<option>'+s.name+'</option>';}).join('') || '<option>Matematyka</option>';
+  var teachOpts = teachers.map(function(t){return '<option>'+t.name+'</option>';}).join('');
+  return '<div class="form-row"><div class="form-group"><label>Dzień</label><select id="p-day"><option>Poniedziałek</option><option>Wtorek</option><option>Środa</option><option>Czwartek</option><option>Piątek</option></select></div>'+
+    '<div class="form-group"><label>Nr lekcji</label><input id="p-lesson" type="number" min="1" max="8" value="1"></div></div>'+
+    '<div class="form-row"><div class="form-group"><label>Klasa</label><select id="p-class">'+classOpts+'</select></div>'+
+    '<div class="form-group"><label>Przedmiot</label><select id="p-subject">'+subOpts+'</select></div></div>'+
+    '<div class="form-group"><label>Nauczyciel</label><select id="p-teacher"><option value="">—</option>'+teachOpts+'</select></div>'+
+    '<div class="form-group"><label>Sala</label><input id="p-room" placeholder="np. 12"></div>';
+}
+
+function saveTeacher(){
+  var name=document.getElementById('t-name').value.trim();
+  var subject=document.getElementById('t-subject').value.trim();
+  var emailEl=document.getElementById('t-email');
+  var email=(emailEl && emailEl.value.trim()) || '';
+  if(!name||!subject){toast('Uzupełnij imię i przedmiot',true);return;}
+  var login=genTeacherLogin(name);
+  var pass=genPass();
+  if(!email) email = login + '@sp15.edu.pl';
+  var initials = name.replace(/mgr\.?\s*/i,'').split(' ').map(function(p){return (p[0]||'').toUpperCase()}).join('').substring(0,2);
+  teachers.push({id:nextId++,name:name,subject:subject,login:login,email:email,tempPass:pass});
+  dynamicAccounts[login]={pass:pass,role:'nauczyciel',name:name,subject:subject,initials:initials,email:email};
+  generatedLogins.unshift({type:'Nauczyciel',name:name,login:login,pass:pass,date:new Date().toLocaleDateString('pl-PL')});
+  toast('Dodano · login: '+login+' · hasło: '+pass); saveData(); closeModal();renderContent('d-nauczyciele');
+}
+
+function deleteTeacher(id){
+  id = Number(id);
+  teachers = teachers.filter(function(t){ return t.id !== id; });
+  toast('Nauczyciel usunięty'); saveData(); renderContent('d-nauczyciele');
+}
+function editTeacher(id){id=Number(id);var t=teachers.find(function(x){return x.id===id});if(!t)return;openModal('Edytuj nauczyciela',teacherForm(t),function(){
+  t.name=document.getElementById('t-name').value.trim();
+  t.subject=document.getElementById('t-subject').value.trim();
+  var em=document.getElementById('t-email');
+  if(em) t.email=em.value.trim();
+  toast('Zapisano'); saveData(); closeModal();renderContent('d-nauczyciele');
+});}
+function generateLogin(){
+  var type=document.getElementById('l-type').value;
+  var name=document.getElementById('l-name').value.trim();
+  var klasaEl=document.getElementById('l-class');
+  var klasa=(klasaEl && klasaEl.value.trim()) || '';
+  if(!name){toast('Podaj imię i nazwisko',true);return;}
+  var login, pass=genPass(), role, initials;
+  initials = name.split(' ').map(function(p){return (p[0]||'').toUpperCase()}).join('').substring(0,2);
+  if(type==='Uczeń'){
+    login=genStudentLogin(name);
+    role='uczen';
+    dynamicAccounts[login]={pass:pass,role:role,name:name,class:klasa||'3A',initials:initials,email:login+'@sp15.edu.pl'};
+  } else if(type==='Nauczyciel'){
+    login=genTeacherLogin(name);
+    role='nauczyciel';
+    dynamicAccounts[login]={pass:pass,role:role,name:name,subject:'',initials:initials,email:login+'@sp15.edu.pl'};
+  } else {
+    var parts=name.toLowerCase().replace(/ą/g,'a').replace(/ę/g,'e').replace(/ó/g,'o').replace(/ł/g,'l').split(/\s+/);
+    login=(parts[0]||'rodzic')+'.'+(parts[1]||'x');
+    role='uczen';
+    dynamicAccounts[login]={pass:pass,role:role,name:name,class:klasa,initials:initials,email:login+'@email.pl'};
+  }
+  generatedLogins.unshift({type:type,name:name,login:login,pass:pass,date:new Date().toLocaleDateString('pl-PL')});
+  toast('Login: '+login+' · Hasło: '+pass); saveData(); closeModal();renderContent('d-loginy');
+}
+
+function saveSubst(){
+  const date=document.getElementById('s-date').value,lesson=document.getElementById('s-lesson').value;
+  const cls=document.getElementById('s-class').value.trim(),subject=document.getElementById('s-subject').value.trim();
+  const original=document.getElementById('s-original').value.trim(),substitute=document.getElementById('s-substitute').value.trim();
+  const room=document.getElementById('s-room').value.trim();
+  if(!date||!lesson||!cls||!subject){toast('Uzupełnij pola',true);return}
+  const d=date.split('-');const nice=`${d[2]}.${d[1]}.${d[0]}`;
+  substitutions.unshift({id:nextId++,date:nice,lesson,class:cls,subject,original,substitute,room});
+  toast('Zastępstwo dodane'); saveData(); closeModal();renderContent('d-zastepstwa');
+}
+function deleteSubst(id){id=Number(id);substitutions=substitutions.filter(function(s){return s.id!==id});toast('Zastępstwo usunięte'); saveData(); renderContent('d-zastepstwa')}
+function saveAnn(){
+  const title=document.getElementById('a-title').value.trim(),text=document.getElementById('a-text').value.trim();
+  if(!title||!text){toast('Uzupełnij pola',true);return}
+  announcements.unshift({id:nextId++,title,text,date:new Date().toLocaleDateString('pl-PL')});
+  toast('Ogłoszenie dodane'); saveData(); closeModal();renderContent('d-ogloszenia');
+}
+function deleteAnn(id){id=Number(id);announcements=announcements.filter(function(a){return a.id!==id});toast('Ogłoszenie usunięte'); saveData(); renderContent('d-ogloszenia')}
+function saveNote(){
+  const text=document.getElementById('n-text').value.trim();
+  if(!text){toast('Wpisz treść',true);return}
+  directorNotes.unshift({id:nextId++,text,date:new Date().toLocaleDateString('pl-PL')});
+  toast('Uwaga dodana'); saveData(); closeModal();renderContent('d-uwagi');
+}
+function deleteNote(id){id=Number(id);directorNotes=directorNotes.filter(function(n){return n.id!==id});toast('Uwaga usunięta'); saveData(); renderContent('d-uwagi')}
+function saveGrade(){
+  const student=document.getElementById('g-student').value,grade=document.getElementById('g-grade').value,cat=document.getElementById('g-cat').value;
+  const list=document.getElementById('grades-list');
+  if(list){const tr=document.createElement('tr');tr.innerHTML=`<td>${student.split(' (')[0]}</td><td>${student.match(/\((.+)\)/)?.[1]||''}</td><td><span class="grade g${grade}">${grade}</span></td><td>${cat}</td><td>${new Date().toLocaleDateString('pl-PL')}</td>`;list.prepend(tr)}
+  toast('Ocena wstawiona'); saveData(); closeModal();
+}
+
+
+
+function renderDUczniowie(m){
+  var rows = studentsList.map(function(s){
+    return '<tr><td>'+s.name+'</td><td><strong>'+s.class+'</strong></td><td>'+s.login+'</td><td>'+s.email+'</td>'+
+      '<td><button class="btn btn-outline btn-sm" data-id="'+s.id+'" onclick="editStudent(this.getAttribute(\'data-id\'))">Edytuj</button> '+
+      '<button class="btn btn-danger btn-sm" data-id="'+s.id+'" onclick="deleteStudent(this.getAttribute(\'data-id\'))">Usuń</button></td></tr>';
+  }).join('');
+  m.innerHTML = '<div class="page-title">Uczniowie <button class="btn btn-primary btn-sm" onclick="openModal(\'Dodaj ucznia\',studentForm(),saveStudent)">+ Dodaj ucznia</button></div>'+
+    '<div class="card"><div class="card-body" style="padding:0"><table><thead><tr><th>Imię i nazwisko</th><th>Klasa</th><th>Login</th><th>E-mail</th><th>Akcje</th></tr></thead>'+
+    '<tbody>'+rows+'</tbody></table></div></div>'+
+    '<p style="font-size:12px;color:#888;margin-top:8px">Możesz zmienić imię, nazwisko i klasę ucznia. Przy dodawaniu login i hasło generują się automatycznie.</p>';
+}
+function studentForm(s){
+  s = s || {};
+  var classOpts = classesList.map(function(c){
+    return '<option value="'+c.name+'"'+(s.class===c.name?' selected':'')+'>'+c.name+'</option>';
+  }).join('');
+  return '<div class="form-group"><label>Imię i nazwisko</label><input id="st-name" value="'+(s.name||'')+'"></div>'+
+    '<div class="form-group"><label>Klasa</label><select id="st-class">'+classOpts+'</select></div>'+
+    (s.login ? '<div class="form-group"><label>Login</label><input value="'+s.login+'" disabled style="background:#f5f5f5"></div>' : '<p style="font-size:12px;color:#888">Login i hasło wygenerują się automatycznie.</p>');
+}
+function saveStudent(){
+  var name=document.getElementById('st-name').value.trim();
+  var klasa=document.getElementById('st-class').value;
+  if(!name){toast('Podaj imię i nazwisko',true);return;}
+  if(window._editStudentId){
+    var s=studentsList.find(function(x){return x.id===window._editStudentId});
+    if(s){
+      s.name=name;
+      s.class=klasa;
+      if(dynamicAccounts[s.login]){ dynamicAccounts[s.login].name=name; dynamicAccounts[s.login].class=klasa; }
+    }
+    window._editStudentId=null;
+    toast('Dane ucznia zapisane'); saveData();
+  } else {
+    var login=genStudentLogin(name);
+    var pass=genPass();
+    var initials=name.split(' ').map(function(p){return (p[0]||'').toUpperCase()}).join('').substring(0,2);
+    var email=login+'@sp15.edu.pl';
+    studentsList.push({id:nextId++,name:name,class:klasa,login:login,email:email,tempPass:pass});
+    dynamicAccounts[login]={pass:pass,role:'uczen',name:name,class:klasa,initials:initials,email:email};
+    generatedLogins.unshift({type:'Uczeń',name:name,login:login,pass:pass,date:new Date().toLocaleDateString('pl-PL')});
+    toast('Uczeń dodany · login: '+login+' · hasło: '+pass); saveData();
+  }
+  saveData(); closeModal();renderContent('d-uczniowie');
+}
+function editStudent(id){
+  id=Number(id);
+  var s=studentsList.find(function(x){return x.id===id});
+  if(!s)return;
+  window._editStudentId=id;
+  openModal('Edytuj ucznia',studentForm(s),saveStudent);
+}
+function deleteStudent(id){
+  id=Number(id);
+  var s=studentsList.find(function(x){return x.id===id});
+  if(s && dynamicAccounts[s.login]) delete dynamicAccounts[s.login];
+  studentsList=studentsList.filter(function(x){return x.id!==id});
+  toast('Uczeń usunięty'); saveData(); renderContent('d-uczniowie');
+}
+function renderDKlasy(m){
+  var rows = classesList.map(function(c){
+    return '<tr><td><strong>'+c.name+'</strong></td><td>'+c.level+'</td><td>'+c.tutor+'</td><td>'+c.students+'</td><td>'+c.room+'</td>'+
+      '<td><button class="btn btn-outline btn-sm" data-id="'+c.id+'" onclick="editClass(this.getAttribute(\'data-id\'))">Edytuj</button> '+
+      '<button class="btn btn-danger btn-sm" data-id="'+c.id+'" onclick="deleteClass(this.getAttribute(\'data-id\'))">Do archiwum</button></td></tr>';
+  }).join('');
+  var arch = classArchive.map(function(c){
+    return '<tr style="opacity:.75"><td><strong>'+c.name+'</strong></td><td>'+c.level+'</td><td>'+c.tutor+'</td><td>'+c.students+'</td><td>'+c.room+'</td><td style="font-size:12px;color:#888">'+c.archivedAt+
+      ' <button class="btn btn-outline btn-sm" data-id="'+c.id+'" onclick="restoreClass(this.getAttribute(\'data-id\'))">Przywróć</button></td></tr>';
+  }).join('') || '<tr><td colspan="6" class="empty-state">Brak klas w archiwum</td></tr>';
+  m.innerHTML = '<div class="page-title">Klasy <button class="btn btn-primary btn-sm" onclick="openModal(\'Dodaj klasę\',classForm(),saveClass)">+ Dodaj klasę</button></div>'+
+    '<div class="card"><div class="card-header">Aktywne klasy</div><div class="card-body" style="padding:0"><table><thead><tr><th>Klasa</th><th>Rocznik</th><th>Wychowawca</th><th>Uczniów</th><th>Sala</th><th>Akcje</th></tr></thead>'+
+    '<tbody>'+(rows||'<tr><td colspan="6" class="empty-state">Brak klas</td></tr>')+'</tbody></table></div></div>'+
+    '<div class="card"><div class="card-header">Archiwum klas</div><div class="card-body" style="padding:0"><table><thead><tr><th>Klasa</th><th>Rocznik</th><th>Wychowawca</th><th>Uczniów</th><th>Sala</th><th>Usunięto / akcje</th></tr></thead>'+
+    '<tbody>'+arch+'</tbody></table></div></div>';
+}
+function restoreClass(id){
+  id=Number(id);
+  var c = classArchive.find(function(x){return x.id===id});
+  if(!c) return;
+  classArchive = classArchive.filter(function(x){return x.id!==id});
+  classesList.push({id:c.id,name:c.name,level:c.level,tutor:c.tutor,students:c.students,room:c.room});
+  saveData();
+  toast('Klasa przywrócona'); saveData(); renderContent('d-klasy');
+}
+
+function renderDGrupy(m){
+  var rows = groupsList.map(function(g){
+    return '<tr><td><strong>'+g.name+'</strong></td><td>'+g.type+'</td><td>'+g.leader+'</td><td>'+g.members+'</td>'+
+      '<td><button class="btn btn-outline btn-sm" data-id="'+g.id+'" onclick="editGroup(this.getAttribute(\'data-id\'))">Edytuj</button> '+
+      '<button class="btn btn-danger btn-sm" data-id="'+g.id+'" onclick="deleteGroup(this.getAttribute(\'data-id\'))">Usuń</button></td></tr>';
+  }).join('');
+  m.innerHTML = '<div class="page-title">Grupy <button class="btn btn-primary btn-sm" onclick="openModal(\'Dodaj grupę\',groupForm(),saveGroup)">+ Utwórz grupę</button></div>'+
+    '<div class="card"><div class="card-body" style="padding:0"><table><thead><tr><th>Nazwa</th><th>Typ</th><th>Opiekun</th><th>Członków</th><th>Akcje</th></tr></thead>'+
+    '<tbody>'+rows+'</tbody></table></div></div>';
+}
+
+function classForm(c){
+  c = c || {};
+  return '<div class="form-row"><div class="form-group"><label>Nazwa klasy</label><input id="c-name" value="'+(c.name||'')+'" placeholder="np. 4A"></div>'+
+    '<div class="form-group"><label>Rocznik / poziom</label><input id="c-level" value="'+(c.level||'')+'" placeholder="np. 4"></div></div>'+
+    '<div class="form-group"><label>Wychowawca</label><input id="c-tutor" value="'+(c.tutor||'')+'" placeholder="mgr ..."></div>'+
+    '<div class="form-row"><div class="form-group"><label>Liczba uczniów</label><input id="c-students" type="number" value="'+(c.students||0)+'" min="0"></div>'+
+    '<div class="form-group"><label>Sala</label><input id="c-room" value="'+(c.room||'')+'" placeholder="s.12"></div></div>';
+}
+function saveClass(){
+  var nameEl = document.getElementById('c-name');
+  var name = nameEl ? nameEl.value.trim() : '';
+  if(!name){ toast('Podaj nazwę klasy', true); return; }
+  var obj = {
+    id: nextId++,
+    name: name,
+    level: (document.getElementById('c-level')||{}).value || '',
+    tutor: (document.getElementById('c-tutor')||{}).value || '',
+    students: parseInt((document.getElementById('c-students')||{}).value, 10) || 0,
+    room: (document.getElementById('c-room')||{}).value || ''
+  };
+  if(window._editClassId){
+    var c = classesList.find(function(x){ return x.id === window._editClassId; });
+    if(c){
+      c.name = obj.name;
+      c.level = obj.level;
+      c.tutor = obj.tutor;
+      c.students = obj.students;
+      c.room = obj.room;
+    }
+    window._editClassId = null;
+    toast('Klasa zaktualizowana');
+  } else {
+    classesList.push(obj);
+    toast('Klasa dodana');
+  }
+  saveData();
+  closeModal();
+  renderContent('d-klasy');
+}
+function editClass(id){
+  id = Number(id);
+  var c = classesList.find(function(x){ return x.id === id; });
+  if(!c){ toast('Nie znaleziono klasy', true); return; }
+  window._editClassId = id;
+  openModal('Edytuj klasę', classForm(c), saveClass);
+}
+function deleteClass(id){
+  id = Number(id);
+  var c = classesList.find(function(x){ return x.id === id; });
+  if(c){
+    classArchive.unshift({
+      id: c.id, name: c.name, level: c.level, tutor: c.tutor,
+      students: c.students, room: c.room,
+      archivedAt: new Date().toLocaleString('pl-PL')
+    });
+    classesList = classesList.filter(function(x){ return x.id !== id; });
+    saveData();
+    toast('Klasa przeniesiona do archiwum');
+  }
+  renderContent('d-klasy');
+}
+function groupForm(g){
+  g = g || {};
+  var types = ['zajęcia dodatkowe','sport','wyrównawcza','inna'];
+  var opts = types.map(function(t){
+    return '<option value="'+t+'"'+(g.type===t?' selected':'')+'>'+t+'</option>';
+  }).join('');
+  return '<div class="form-group"><label>Nazwa grupy</label><input id="g-name" value="'+(g.name||'')+'"></div>'+
+    '<div class="form-group"><label>Typ</label><select id="g-type">'+opts+'</select></div>'+
+    '<div class="form-group"><label>Opiekun</label><input id="g-leader" value="'+(g.leader||'')+'"></div>'+
+    '<div class="form-group"><label>Liczba członków</label><input id="g-members" type="number" value="'+(g.members||0)+'" min="0"></div>';
+}
+function saveGroup(){
+  var nameEl = document.getElementById('g-name');
+  var name = nameEl ? nameEl.value.trim() : '';
+  if(!name){ toast('Podaj nazwę grupy', true); return; }
+  var obj = {
+    id: nextId++,
+    name: name,
+    type: (document.getElementById('g-type')||{}).value || 'inna',
+    leader: (document.getElementById('g-leader')||{}).value || '',
+    members: parseInt((document.getElementById('g-members')||{}).value, 10) || 0
+  };
+  if(window._editGroupId){
+    var g = groupsList.find(function(x){ return x.id === window._editGroupId; });
+    if(g){
+      g.name = obj.name;
+      g.type = obj.type;
+      g.leader = obj.leader;
+      g.members = obj.members;
+    }
+    window._editGroupId = null;
+    toast('Grupa zaktualizowana');
+  } else {
+    groupsList.push(obj);
+    toast('Grupa utworzona');
+  }
+  saveData();
+  closeModal();
+  renderContent('d-grupy');
+}
+function editGroup(id){
+  id = Number(id);
+  var g = groupsList.find(function(x){ return x.id === id; });
+  if(!g){ toast('Nie znaleziono grupy', true); return; }
+  window._editGroupId = id;
+  openModal('Edytuj grupę', groupForm(g), saveGroup);
+}
+function deleteGroup(id){
+  id = Number(id);
+  groupsList = groupsList.filter(function(g){ return g.id !== id; });
+  saveData();
+  toast('Grupa usunięta');
+  renderContent('d-grupy');
+}
+function escAttr(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function renderProfil(m){
+  var u = currentUser || {};
+  var roleLabel = {uczen:'Uczeń',nauczyciel:'Nauczyciel',dyrektor:'Dyrektor'}[currentRole]||'';
+  var html = '<div class="page-title">Mój profil</div>'+
+    '<div class="card"><div class="card-header">Dane konta</div><div class="card-body">'+
+    '<div class="form-group"><label>Login</label><input value="'+escAttr(u.login||'')+'" disabled style="background:#f0f0f0;color:#555"></div>'+
+    '<div class="form-group"><label>Imię i nazwisko</label><input id="p-name" value="'+escAttr(u.name)+'"></div>';
+  if(currentRole==='uczen'){
+    html += '<div class="form-group"><label>Klasa</label><input id="p-class" value="'+escAttr(u.class)+'"></div>';
+  }
+  if(currentRole==='nauczyciel'){
+    html += '<div class="form-group"><label>Przedmiot</label><input id="p-subject" value="'+escAttr(u.subject)+'"></div>';
+  }
+  html += '<div class="form-group"><label>Rola</label><input value="'+roleLabel+'" disabled style="background:#f0f0f0;color:#555"></div>'+
+    '<div class="form-group"><label>E-mail</label><input id="p-email" type="email" value="'+escAttr(u.email)+'"></div>'+
+    '<div class="form-group"><label>Telefon</label><input id="p-phone" value="'+escAttr(u.phone)+'" placeholder="np. 500 100 200"></div>'+
+    '<div class="form-group"><label>Nowe hasło (opcjonalnie)</label><input id="p-pass" type="password" placeholder="Zostaw puste, aby nie zmieniać"></div>'+
+    '<button type="button" class="btn btn-primary" onclick="saveProfile()">Zapisz zmiany</button>'+
+    '</div></div>';
+  m.innerHTML = html;
+}
+function saveProfile(){
+  var nameEl = document.getElementById('p-name');
+  var name = nameEl ? nameEl.value.trim() : '';
+  if(!name){ toast('Podaj imię i nazwisko', true); return; }
+
+  currentUser.name = name;
+  var cls = document.getElementById('p-class');
+  if(cls) currentUser.class = cls.value.trim();
+  var sub = document.getElementById('p-subject');
+  if(sub) currentUser.subject = sub.value.trim();
+  var em = document.getElementById('p-email');
+  if(em) currentUser.email = em.value.trim();
+  var ph = document.getElementById('p-phone');
+  if(ph) currentUser.phone = ph.value.trim();
+
+  var parts = name.split(/\s+/);
+  currentUser.initials = ((parts[0]&&parts[0][0])||'') + ((parts[1]&&parts[1][0])||'');
+  currentUser.initials = currentUser.initials.toUpperCase();
+
+  var login = currentUser.login || '';
+  if(login){
+    userProfiles[login] = {
+      name: currentUser.name,
+      email: currentUser.email || '',
+      phone: currentUser.phone || '',
+      class: currentUser.class || '',
+      subject: currentUser.subject || ''
+    };
+    // zmiana hasła
+    var passEl = document.getElementById('p-pass');
+    var newPass = passEl ? passEl.value : '';
+    if(newPass && newPass.length >= 3){
+      if(dynamicAccounts[login]) dynamicAccounts[login].pass = newPass;
+      userProfiles[login].pass = newPass;
+      // stałe konta demo – dopisz do dynamicAccounts
+      if(!dynamicAccounts[login]){
+        dynamicAccounts[login] = {
+          pass: newPass,
+          role: currentRole,
+          name: currentUser.name,
+          class: currentUser.class || '',
+          subject: currentUser.subject || '',
+          initials: currentUser.initials,
+          email: currentUser.email || ''
+        };
+      }
+      toast('Profil i hasło zapisane');
+    } else {
+      toast('Profil zapisany');
+    }
+    // zaktualizuj listę uczniów/nauczycieli jeśli pasuje login
+    studentsList.forEach(function(s){
+      if(s.login === login){ s.name = currentUser.name; if(currentUser.class) s.class = currentUser.class; if(currentUser.email) s.email = currentUser.email; }
+    });
+    teachers.forEach(function(t){
+      if(t.login === login){ t.name = currentUser.name; if(currentUser.subject) t.subject = currentUser.subject; if(currentUser.email) t.email = currentUser.email; }
+    });
+  } else {
+    toast('Profil zapisany');
+  }
+
+  var un = document.getElementById('user-name');
+  var av = document.getElementById('user-avatar');
+  if(un) un.textContent = currentUser.name + (currentUser.class ? ' · ' + currentUser.class : '');
+  if(av) av.textContent = currentUser.initials;
+  saveData();
+}
+
+function openModal(title,bodyHtml,onSave){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-body').innerHTML=bodyHtml;
+  document.getElementById('modal-footer').innerHTML=`<button class="btn btn-outline" onclick="closeModal()">Anuluj</button><button class="btn btn-primary" id="modal-save">Zapisz</button>`;
+  document.getElementById('modal-save').onclick=onSave;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function toast(msg,isError){
+  if(isError===undefined) isError=false;
+  var t=document.getElementById('toast');
+  if(t){ t.textContent=msg; t.className='toast show'+(isError?' error':''); setTimeout(function(){ t.classList.remove('show'); },2800); }
+  if(!isError){ try{ saveData(); }catch(e){} }
+}
+
+
+
+</script>
 </body>
 </html>
